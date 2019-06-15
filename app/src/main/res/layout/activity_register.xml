@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Views.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        >
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/firstname"
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:ems="10"
+            android:backgroundTint="@color/colorPrimary"
+
+            android:hint=" Enter your Name"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="146dp" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/lastname"
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:ems="10"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint=" Enter your Lastname"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="146dp"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+             />
+        </android.support.design.widget.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:tag="Select type"
+
+       >
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_gender"
+                />
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textSize="18sp" />
+
+        </RadioGroup>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/useremail"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:layout_width="349dp"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint=" Email"
+            android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/userpassword"
+            android:layout_width="349dp"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:hint=" Create your Password"
+            android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            >
+        <AutoCompleteTextView
+            android:id="@+id/confirmpassword"
+            android:layout_width="349dp"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:ems="10"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:hint=" Retype your Password"
+            android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+        <TextView
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:paddingLeft="0dp"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:text="Contact  Details"
+            android:textColor="#000"
+            android:textSize="16sp" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/userphone"
+            android:layout_width="349dp"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+
+            android:ems="10"
+            android:hint=" Enter your Mobile No"
+            android:inputType="phone"
+            android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="260dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:text="Address Details"
+            android:textColor="#000"
+
+            android:textSize="16sp" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_height="wrap_content">
+            <AutoCompleteTextView
+                android:id="@+id/city"
+                android:layout_width="349dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:inputType="textPostalAddress"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_home_black_24dp"
+                android:hint=" City" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/useraddress"
+            android:layout_width="349dp"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_home_black_24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:ems="10"
+            android:hint=" Enter your Flat Address"
+            android:inputType="textPostalAddress"
+       />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/pincode"
+            android:backgroundTint="@color/colorPrimary"
+            android:inputType="number"
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_map_black_24dp"
+            android:hint=" Pincode" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/register"
+            style="?android:textAppearanceSmall"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:textColor="#fff"
+            android:background="@drawable/rounded_corner"
+            android:text="@string/action_sign_up"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_marginBottom="@dimen/nav_header_vertical_spacing"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

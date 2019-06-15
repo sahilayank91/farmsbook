@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/nav_header_vertical_spacing"
+        android:padding="@dimen/nav_header_vertical_spacing"
+
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/nav_header_vertical_spacing"
+            android:layout_marginLeft="@dimen/nav_header_vertical_spacing">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Order Id: "
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/orderid"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Status: "
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/orderstatus"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/orderdatetext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="Order Date:"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/orderdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_weight="1"
+        android:visibility="visible" />
+
+</LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                tools:text="Time to deliver:" />
+
+            <TextView
+                android:id="@+id/order_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Timing"
+                />
+
+
+
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/dfasfd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Customer Name:"
+        android:layout_weight="1"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cutomer_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Customer Name"
+        android:textColor="@color/background_gradient_start"
+        />
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/dfasffsdfasd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address:"
+                android:layout_weight="1"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+               <TextView
+                   android:id="@+id/flataddress"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:maxLines="4"
+                   android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                   android:text="Flat Address"
+                   android:layout_weight="1"
+                   />
+
+               <TextView
+                android:id="@+id/locality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="Locality"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/ordercity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="City" />
+               <TextView
+                   android:id="@+id/pincode"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Pincode"
+                   />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Phone:"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+               />
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Phone" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lkfjas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Number of Items:"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/itemcount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No of items" />
+            </LinearLayout>
+
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/activity_vertical_margin"
+              android:orientation="horizontal">
+
+
+              <TextView
+                  android:id="@+id/totaltextView"
+                  android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:layout_height="wrap_content"
+                  android:text="Total Cost: "
+                  android:textColor="@color/colorPrimary"
+                  android:textSize="20sp"
+                  android:textStyle="bold" />
+
+              <TextView
+                  android:id="@+id/total"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:text="total"
+                  android:layout_weight="1"
+                  android:textSize="20sp"
+                  android:textStyle="bold"
+                   />
+
+
+          </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/call"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rounded_corner"
+                    android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:text="Call Customer"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="10dp" />
+                <Button
+                    android:id="@+id/navigate"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner"
+                    android:drawableLeft="@drawable/ic_map_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:text="Navigate"
+                    android:textColor="@color/white"
+                     />
+
+            </LinearLayout>
+
+
+
+            <!--<Button-->
+                <!--android:id="@+id/editOrder"-->
+                <!--android:layout_width="125dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:layout_alignEnd="@+id/call"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignRight="@+id/call"-->
+                <!--android:layout_marginBottom="73dp"-->
+                <!--android:background="@drawable/rounded_corner"-->
+                <!--android:text="Edit Order"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:visibility="gone" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/orderwork"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_corner"
+                    android:text="OTP"
+                    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+                    android:layout_weight="1"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/viewOrder"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:layout_height="32dp"
+                    android:background="@drawable/rounded_corner"
+                    android:text="View Order"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/refuse_order"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:background="@drawable/rounded_corner"
+        android:text="Refuse Order"
+        android:layout_marginBottom="@dimen/nav_header_vertical_spacing"
+        android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+        android:textColor="@color/white" />
+</LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

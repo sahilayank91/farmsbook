@@ -1,0 +1,907 @@
+<!--<!DOCTYPE resources [<!ENTITY server "http://192.168.0.3:3000/">]>-->
+<!DOCTYPE resources [<!ENTITY server "https://kisaanhub.herokuapp.com/">]>
+
+<resources>
+    <string name="app_name">FarmsBook</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Intro Slider -->
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Easy Ordering Process</string>
+    <string name="slide_1_desc">Write your all Grocery need in paper and click photo and send favourite seller</string>
+
+    <string name="slide_2_title">Free and Fast Delivery</string>
+    <string name="slide_2_desc">20 min delivery of your grocery items</string>
+
+    <string name="slide_3_title">Lower Price</string>
+    <string name="slide_3_desc">Best seller is shown to by our rating system</string>
+
+    <string name="slide_4_title">Quality Product</string>
+    <string name="slide_4_desc">By rating system we provide you quality and lower price product</string>
+
+    <string name="slide_5_title">365 Support</string>
+    <string name="slide_5_desc">Our support agents are on standby to ensure your needs are met, 7 days a week - 365 days a year.</string>
+
+    <string name="slide_6_title">365 Support</string>
+    <string name="slide_6_desc">Our support agents are on standby to ensure you are laundry needs are met, 7 days a week - 365 days a year.</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!--Navigation Drawer items-->
+    <string name="profile">Edit Profile</string>
+    <string name="orders">Your Orders</string>
+    <string name="logout">Logout</string>
+    <string name="schedule_pickup">Schedule Pickup</string>
+    <string name="coupons">Coupons</string>
+    <string name="donateclothes">Donate Clothes</string>
+    <string name="termsofusage">Terms of Usage</string>
+    <string name="feedback">Feedback</string>
+    <string name="share">Share</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="communicate">Communicate</string>
+
+    <!-- Strings related to login -->
+
+    <string name="prompt_email"> Email</string>
+    <string name="prompt_phone"> Mobile No</string>
+
+    <string name="prompt_password"> Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_up">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_phone">This Mobile No is invalid</string>
+
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="reg_email_hint">Email </string>
+    <string name="reg_name_hint">Name</string>
+    <string name="reg_department_hint">Department</string>
+    <string name="reg_contact_hint">Contact</string>
+    <string name="reg_password_hint">Password</string>
+    <string name="reg_confirm_password_hint">Confirm password</string>
+    <string name="reg_success">Registered Successfully!</string>
+    <string name="change_password_success">Password Changed Successfully!</string>
+    <string name="update_success">Updated Successfully!</string>
+
+
+    <!-- TODO: Removing Hardcoded Strings -->
+    <string name="Edit">Edit</string>
+    <string name="Delete">Delete</string>
+    <string name="sure">Are you sure?</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="proceed">Proceed</string>
+    <string name="error">Sorry there was an error!"</string>
+    <string name="select_service">Select Service</string>
+
+
+    <!--   #################### URL ####################-->
+
+    <string name="login">&server;service/authenticate/login</string>
+    <string name="loginById">&server;service/authenticate/getUserById</string>
+    <string name="getSellerByPinCode">&server;service/authenticate/getSellerByPinCode</string>
+    <string name="register">&server;service/authenticate/register</string>
+    <string name="changePasswordUsingPhone">&server;service/authenticate/changePasswordUsingPhone</string>
+    <string name="updateUser">&server;service/authenticate/updateUser</string>
+    <string name="checkIfUserExist">&server;service/authenticate/checkIfUserExist</string>
+
+
+    <!-- Order -->
+    <string name="newOrder">&server;service/order/newOrder/</string>
+    <string name="cancelOrder">&server;service/order/cancelOrder/</string>
+    <string name="getOrder">&server;service/order/getOrder/</string>
+    <string name="getOrderByUserId">&server;service/order/getOrderByUserId/</string>
+    <string name="getTodayOrders">&server;service/order/getTodayOrders/</string>
+    <string name="confirmOrder">&server;service/order/confirmOrder/</string>
+    <string name="getConfirmedOrders">&server;service/order/getConfirmedOrders/</string>
+    <string name="getUpcomingOrders">&server;service/order/getUpcomingOrders/</string>
+    <string name="getCompletedOrders">&server;service/order/getCompletedOrders/</string>
+    <string name="getProcessedOrders">&server;service/order/getProcessedOrders/</string>
+    <string name="verifyDelivery">&server;service/order/verifyDelivery/</string>
+    <string name="verifyPickup">&server;service/order/verifyPickup/</string>
+    <string name="addSeller">&server;service/order/addSeller/</string>
+    <string name="processOrder">&server;service/order/processOrder/</string>
+    <string name="addRating">&server;service/order/addRating/</string>
+    <string name="updatePaymentId">&server;service/order/updatePaymentId/</string>
+    <string name="getOrderForApp">&server;service/order/getOrderForApp/</string>
+
+    <!-- Product -->
+    <string name="newProduct">&server;service/product/newProduct/</string>
+    <string name="deleteProduct">&server;service/product/deleteProduct/</string>
+    <string name="getProduct">&server;service/product/getProduct/</string>
+    <string name="getProductBySellerId">&server;service/product/getProductBySellerId/</string>
+    <string name="getProductByType">&server;service/product/getProductByType/</string>
+
+    <string name="get_feedback">&server;service/feedback/getFeedback/</string>
+    <string name="update_feedback">&server;service/feedback/newFeedback/</string>
+    <string name="createOffer">&server;service/order/createOffer/</string>
+    <string name="createDonation">&server;service/order/createDonation/</string>
+
+    <string name="checkIfUserHasUsedCoupon">&server;service/order/checkIfUserHasUsedCoupon/</string>
+    <string name="getOffer">&server;service/order/getOffer/</string>
+    <string name="getImages">&server;service/order/getImages/</string>
+
+    <string name="createUserOfferRelation">&server;service/order/createUserOfferRelation/</string>
+    <string name="refuseOrder">&server;service/order/refuseOrder/</string>
+
+
+    <!-- Payment related url -->
+    <string name="createPaymentRequest">&server;service/payment/createPaymentRequest/</string>
+    <string name="getPaymentDetails">&server;service/payment/getPaymentDetails/</string>
+    <string name="approvePayment">&server;service/payment/approvePayment/</string>
+
+
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="login_success">Logged In Successfully</string>
+    <string name="profilephoto">ProfilePhoto</string>
+    <string name="title_activity_schedule_pickup">SchedulePickup</string>
+    <string name="title_select_service">Select Service</string>
+    <string name="title_create_order">Create Order</string>
+    <string name="title_add_address">Add Address</string>
+    <string name="title_finish_order">Checkout</string>
+    <string name="blankets_single">Blankets (Single Bed)</string>
+    <string name="blankets_double">Blankets (Double Bed)</string>
+    <string name="bedsheet_single">Bedsheet (Single Bed)</string>
+    <string name="bedsheet_double">Bedsheet (Double Bed)</string>
+    <string name="jackets">Jackets</string>
+    <string name="woollens">Woollens</string>
+    <string name="bottoms">Bottoms</string>
+    <string name="create_order">Create Order</string>
+
+    <string-array name="services">
+        <item>Steam Ironing</item>
+        <item>Wash and Fold (Kg Basis)</item>
+        <item>Wash and Iron (Kg Basis)</item>
+        <item>Wash and Iron</item>
+        <item>Dry Cleaning</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_your_orders">YourOrders</string>
+    <string name="order_date">Order Date :</string>
+    <string name="order_id">Order Id:</string>
+    <string name="pickup_time">Pickup Time:</string>
+    <string name="status">Status:</string>
+    <string name="title_activity_register_washer_man">RegisterWasherMan</string>
+
+
+    <string name="api_key">AIzaSyBT7r6sG8_M_b7qJeRdWujK4S8x0B2uGZ0</string>
+    <string name="agent_corner">Agent Corner</string>
+    <string name="add_washerman">Add Washerman</string>
+    <string name="title_activity_pickup">PickupActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+
+
+    <string name="item_title">Palais Garnier</string>
+    <string name="item_desc">The Palais Garnier which locates in Paris was built from 1861 for
+        the Paris Opera.
+    </string>
+    <string name="detail_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+    </string>
+    <string name="detail_location">"8 Rue Scribe, 75009 Paris, France"</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="termsofuse">Terms of Use</string>
+    <string name="rate_card">Rate Card</string>
+    <string name="title_activity_rate_card">RateCardActivity</string>
+    <string name="home">Home</string>
+    <string name="categories">Categories</string>
+    <string name="offers">Offers</string>
+    <string name="change_address">Change Address</string>
+    <string name="place_order">Place Order</string>
+    <string name="shop_by_category">Shop By Category</string>
+    <string name="title_activity_donate_clothes">DonateClothes</string>
+    <string name="title_activity_terms_and_condition">TermsAndCondition</string>
+
+
+    <!--FIREBASE AUTH STRINGS-->
+
+    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
+
+    <string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
+
+    <string name="label_twitter_login">Firebase + Twitter Login</string>
+    <string name="desc_twitter_login">Use a Twitter Login credential to authenticate with Firebase.</string>
+
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="label_passwordless">Passwordless Authentication</string>
+    <string name="desc_passwordless">Use only an email to authenticate with Firebase.</string>
+
+    <string name="label_phone_auth">Phone Number Authentication</string>
+    <string name="desc_phone_auth">Use a phone number to authenticate with Firebase.</string>
+
+    <string name="label_anonymous_auth">Anonymous Authentication</string>
+    <string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+
+    <string name="label_custom_auth">Custom Authentication</string>
+    <string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
+
+    <string name="label_firebase_ui">FirebaseUI Auth</string>
+    <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="status_code_sent">Code Sent</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="instant_validation">(instant validation)</string>
+
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
+
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="facebook_title_text">Facebook Login</string>
+
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+
+    <string name="passwordless_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="passwordless_title_text">Passwordless Sign In</string>
+    <string name="status_email_not_sent">Send link to your email to get started.</string>
+    <string name="status_email_sent">Link sent, check your email to continue.</string>
+    <string name="status_link_found">Link received, enter email to sign in.</string>
+
+    <string name="phone_title_text">Phone Number</string>
+
+    <string name="twitter_status_fmt">Twitter User: %s</string>
+    <string name="twitter_title_text">Twitter Login</string>
+
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
+
+    <string name="id_fmt">User ID: %s</string>
+    <string name="email_fmt">Email: %s</string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
+    <string name="title_activity_change_password">Change Password</string>
+    <string name="back"><![CDATA[< < Back]]></string>
+    <string name="title_activity_upload_image">UploadImage</string>
+    <string name="steam_ironing">Steam Ironing</string>
+    <string name="wash_and_fold">Wash and Fold</string>
+    <string name="wash_and_iron">Wash and Iron</string>
+    <string name="express_services_24_hours">Express Services (24 Hours)</string>
+    <string name="dry_cleaning">Dry Cleaning</string>
+    <string name="flat_address">Flat Address</string>
+
+
+    <string-array name="city">
+        <item>Jaipur</item>
+        <item>Barmer</item>
+        <item>Jodhpur</item>
+        <item>Kota</item>
+        <item>Jaisalmer</item>
+        <item>Hanumangarh</item>
+        <item>Udaipur</item>
+    </string-array>
+
+
+    <string-array name="pincode_array">
+        <item>303329</item>
+        <item>302005</item>
+        <item>302001</item>
+        <item>303908</item>
+        <item>303002</item>
+        <item>302011</item>
+        <item>303007</item>
+        <item>302006</item>
+        <item>302013</item>
+        <item>303338</item>
+        <item>303901</item>
+        <item>303801</item>
+        <item>303804</item>
+        <item>303601</item>
+        <item>302023</item>
+        <item>302028</item>
+        <item>302018</item>
+        <item>302002</item>
+        <item>303120</item>
+        <item>303712</item>
+        <item>303001</item>
+        <item>303119</item>
+        <item>302004</item>
+        <item>303908</item>
+        <item>303331</item>
+        <item>303602</item>
+        <item>303007</item>
+        <item>303903</item>
+        <item>303602</item>
+        <item>303103</item>
+        <item>303103</item>
+        <item>303305</item>
+        <item>303603</item>
+        <item>303119</item>
+        <item>303119</item>
+        <item>303007</item>
+        <item>303805</item>
+        <item>302015</item>
+        <item>303119</item>
+        <item>303105</item>
+        <item>303109</item>
+        <item>303105</item>
+        <item>302016</item>
+        <item>303806</item>
+        <item>302015</item>
+        <item>302015</item>
+        <item>303106</item>
+        <item>303908</item>
+        <item>303302</item>
+        <item>303603</item>
+        <item>302028</item>
+        <item>303301</item>
+        <item>303706</item>
+        <item>303903</item>
+        <item>303102</item>
+        <item>303007</item>
+        <item>303120</item>
+        <item>303301</item>
+        <item>303105</item>
+        <item>303119</item>
+        <item>303328</item>
+        <item>303603</item>
+        <item>303107</item>
+        <item>303328</item>
+        <item>303110</item>
+        <item>302026</item>
+        <item>303003</item>
+        <item>303706</item>
+        <item>303110</item>
+        <item>302026</item>
+        <item>302028</item>
+        <item>303701</item>
+        <item>303001</item>
+        <item>303328</item>
+        <item>303106</item>
+        <item>303807</item>
+        <item>302001</item>
+        <item>303107</item>
+        <item>303704</item>
+        <item>303712</item>
+        <item>303006</item>
+        <item>303010</item>
+        <item>303103</item>
+        <item>303803</item>
+        <item>303805</item>
+        <item>302028</item>
+        <item>302012</item>
+        <item>303001</item>
+        <item>303104</item>
+        <item>303120</item>
+        <item>303338</item>
+        <item>303109</item>
+        <item>303338</item>
+        <item>303106</item>
+        <item>303012</item>
+        <item>302001</item>
+        <item>303348</item>
+        <item>303901</item>
+        <item>303005</item>
+        <item>303006</item>
+        <item>303903</item>
+        <item>302001</item>
+        <item>303104</item>
+        <item>303301</item>
+        <item>303804</item>
+        <item>303701</item>
+        <item>303108</item>
+        <item>303805</item>
+        <item>303704</item>
+        <item>303901</item>
+        <item>303103</item>
+        <item>303103</item>
+        <item>303105</item>
+        <item>303120</item>
+        <item>303102</item>
+        <item>303105</item>
+        <item>303801</item>
+        <item>303104</item>
+        <item>303904</item>
+        <item>303904</item>
+        <item>303702</item>
+        <item>303805</item>
+        <item>303005</item>
+        <item>302016</item>
+        <item>302027</item>
+        <item>303006</item>
+        <item>303904</item>
+        <item>303905</item>
+        <item>303302</item>
+        <item>303001</item>
+        <item>303120</item>
+        <item>303107</item>
+        <item>303012</item>
+        <item>303008</item>
+        <item>303805</item>
+        <item>302023</item>
+        <item>303007</item>
+        <item>303301</item>
+        <item>303701</item>
+        <item>303105</item>
+        <item>303104</item>
+        <item>303602</item>
+        <item>303103</item>
+        <item>303103</item>
+        <item>303009</item>
+        <item>302028</item>
+        <item>303008</item>
+        <item>303328</item>
+        <item>302012</item>
+        <item>303804</item>
+        <item>303305</item>
+        <item>303328</item>
+        <item>303712</item>
+        <item>303712</item>
+        <item>303120</item>
+        <item>303801</item>
+        <item>303806</item>
+        <item>303305</item>
+        <item>303006</item>
+        <item>303301</item>
+        <item>303603</item>
+        <item>303603</item>
+        <item>303006</item>
+        <item>303008</item>
+        <item>302018</item>
+        <item>303706</item>
+        <item>303107</item>
+        <item>302016</item>
+        <item>303804</item>
+        <item>303012</item>
+        <item>303106</item>
+        <item>303001</item>
+        <item>303007</item>
+        <item>303008</item>
+        <item>302015</item>
+        <item>303009</item>
+        <item>303302</item>
+        <item>303901</item>
+        <item>303120</item>
+        <item>303008</item>
+        <item>303103</item>
+        <item>303005</item>
+        <item>303348</item>
+        <item>303904</item>
+        <item>303905</item>
+        <item>303108</item>
+        <item>303108</item>
+        <item>303108</item>
+        <item>302002</item>
+        <item>303712</item>
+        <item>303803</item>
+        <item>303338</item>
+        <item>303602</item>
+        <item>303806</item>
+        <item>303604</item>
+        <item>303702</item>
+        <item>302003</item>
+        <item>303601</item>
+        <item>303601</item>
+        <item>302032</item>
+        <item>303603</item>
+        <item>303904</item>
+        <item>303712</item>
+        <item>303807</item>
+        <item>303706</item>
+        <item>302024</item>
+        <item>303302</item>
+        <item>302005</item>
+        <item>303328</item>
+        <item>303338</item>
+        <item>302027</item>
+        <item>302001</item>
+        <item>302006</item>
+        <item>303602</item>
+        <item>302025</item>
+        <item>303701</item>
+        <item>303120</item>
+        <item>302003</item>
+        <item>302006</item>
+        <item>302001</item>
+        <item>303701</item>
+        <item>302027</item>
+        <item>303801</item>
+        <item>302026</item>
+        <item>303704</item>
+        <item>303002</item>
+        <item>303103</item>
+        <item>303701</item>
+        <item>303109</item>
+        <item>302004</item>
+        <item>303806</item>
+        <item>303305</item>
+        <item>302004</item>
+        <item>303119</item>
+        <item>303012</item>
+        <item>303009</item>
+        <item>303305</item>
+        <item>302004</item>
+        <item>303908</item>
+        <item>303305</item>
+        <item>303006</item>
+        <item>302012</item>
+        <item>302012</item>
+        <item>303328</item>
+        <item>303107</item>
+        <item>303003</item>
+        <item>303328</item>
+        <item>303328</item>
+        <item>303301</item>
+        <item>303338</item>
+        <item>303901</item>
+        <item>303801</item>
+        <item>303328</item>
+        <item>303002</item>
+        <item>303706</item>
+        <item>302029</item>
+        <item>303108</item>
+        <item>303105</item>
+        <item>303801</item>
+        <item>303701</item>
+        <item>303012</item>
+        <item>303009</item>
+        <item>303108</item>
+        <item>303103</item>
+        <item>303120</item>
+        <item>303603</item>
+        <item>303901</item>
+        <item>303803</item>
+        <item>303110</item>
+        <item>303908</item>
+        <item>303604</item>
+        <item>303108</item>
+        <item>303702</item>
+        <item>303903</item>
+        <item>303604</item>
+        <item>303105</item>
+        <item>303109</item>
+        <item>302012</item>
+        <item>302006</item>
+        <item>303109</item>
+        <item>303603</item>
+        <item>303803</item>
+        <item>303106</item>
+        <item>303908</item>
+        <item>303903</item>
+        <item>302012</item>
+        <item>303120</item>
+        <item>302028</item>
+        <item>303704</item>
+        <item>303103</item>
+        <item>303008</item>
+        <item>303603</item>
+        <item>302002</item>
+        <item>303602</item>
+        <item>303005</item>
+        <item>303328</item>
+        <item>302028</item>
+        <item>303604</item>
+        <item>303901</item>
+        <item>303908</item>
+        <item>303108</item>
+        <item>303108</item>
+        <item>302003</item>
+        <item>302004</item>
+        <item>303005</item>
+        <item>303108</item>
+        <item>303903</item>
+        <item>303012</item>
+        <item>303102</item>
+        <item>303002</item>
+        <item>303005</item>
+        <item>303008</item>
+        <item>302029</item>
+        <item>303104</item>
+        <item>303603</item>
+        <item>303301</item>
+        <item>303109</item>
+        <item>302027</item>
+        <item>303005</item>
+        <item>302005</item>
+        <item>303103</item>
+        <item>303807</item>
+        <item>303119</item>
+        <item>303602</item>
+        <item>302001</item>
+        <item>303706</item>
+        <item>303006</item>
+        <item>303109</item>
+        <item>302029</item>
+        <item>303806</item>
+        <item>303806</item>
+        <item>303007</item>
+        <item>303712</item>
+        <item>303901</item>
+        <item>302017</item>
+        <item>302017</item>
+        <item>303338</item>
+        <item>303348</item>
+        <item>303339</item>
+        <item>303712</item>
+        <item>303005</item>
+        <item>303110</item>
+        <item>303005</item>
+        <item>303901</item>
+        <item>303009</item>
+        <item>303104</item>
+        <item>303301</item>
+        <item>303109</item>
+        <item>303805</item>
+        <item>303301</item>
+        <item>302020</item>
+        <item>303601</item>
+        <item>303348</item>
+        <item>303109</item>
+        <item>303003</item>
+        <item>302012</item>
+        <item>303005</item>
+        <item>303904</item>
+        <item>303905</item>
+        <item>303604</item>
+        <item>303108</item>
+        <item>303108</item>
+        <item>303805</item>
+        <item>302004</item>
+        <item>303009</item>
+        <item>302017</item>
+        <item>302029</item>
+        <item>302026</item>
+        <item>302012</item>
+        <item>303603</item>
+        <item>303706</item>
+        <item>303328</item>
+        <item>302013</item>
+        <item>302005</item>
+        <item>303008</item>
+        <item>303807</item>
+        <item>303602</item>
+        <item>302012</item>
+        <item>303804</item>
+        <item>303701</item>
+        <item>303108</item>
+        <item>303704</item>
+        <item>302028</item>
+        <item>303712</item>
+        <item>303348</item>
+        <item>303105</item>
+        <item>303005</item>
+        <item>302028</item>
+        <item>303103</item>
+        <item>303801</item>
+        <item>303003</item>
+        <item>303104</item>
+        <item>303806</item>
+        <item>303601</item>
+        <item>303012</item>
+        <item>302012</item>
+        <item>302013</item>
+        <item>302012</item>
+        <item>302029</item>
+        <item>303305</item>
+        <item>303005</item>
+        <item>303901</item>
+        <item>303103</item>
+        <item>303804</item>
+        <item>302012</item>
+        <item>302006</item>
+        <item>303005</item>
+        <item>303706</item>
+        <item>303305</item>
+        <item>303904</item>
+        <item>303301</item>
+        <item>303003</item>
+        <item>303110</item>
+        <item>303106</item>
+        <item>303108</item>
+        <item>303904</item>
+        <item>303106</item>
+        <item>303012</item>
+        <item>303005</item>
+        <item>303107</item>
+        <item>303108</item>
+        <item>303904</item>
+        <item>303005</item>
+        <item>303338</item>
+        <item>303338</item>
+        <item>303107</item>
+        <item>302033</item>
+        <item>303801</item>
+        <item>303701</item>
+        <item>302001</item>
+        <item>303105</item>
+        <item>302003</item>
+        <item>303701</item>
+        <item>303601</item>
+        <item>303908</item>
+        <item>303701</item>
+        <item>302027</item>
+        <item>303105</item>
+        <item>303001</item>
+        <item>303109</item>
+        <item>303801</item>
+        <item>302006</item>
+        <item>302004</item>
+        <item>302005</item>
+        <item>302001</item>
+        <item>302004</item>
+        <item>303110</item>
+        <item>303305</item>
+        <item>303002</item>
+        <item>303704</item>
+        <item>302003</item>
+        <item>303603</item>
+        <item>303908</item>
+        <item>303106</item>
+        <item>302015</item>
+        <item>303007</item>
+        <item>303108</item>
+        <item>303804</item>
+        <item>303008</item>
+        <item>303008</item>
+        <item>303603</item>
+        <item>302013</item>
+        <item>302012</item>
+        <item>303338</item>
+        <item>302027</item>
+        <item>303908</item>
+        <item>303908</item>
+        <item>303805</item>
+        <item>302015</item>
+        <item>302020</item>
+        <item>302004</item>
+        <item>302027</item>
+        <item>303103</item>
+        <item>302027</item>
+        <item>303008</item>
+        <item>303008</item>
+        <item>303604</item>
+        <item>303604</item>
+        <item>303903</item>
+        <item>303806</item>
+        <item>303109</item>
+        <item>303801</item>
+        <item>302029</item>
+        <item>303108</item>
+        <item>303001</item>
+        <item>303009</item>
+        <item>303901</item>
+        <item>303348</item>
+        <item>303105</item>
+        <item>303901</item>
+        <item>302017</item>
+        <item>302033</item>
+        <item>303008</item>
+        <item>303805</item>
+        <item>303901</item>
+        <item>303103</item>
+        <item>303338</item>
+        <item>302016</item>
+        <item>302002</item>
+        <item>303903</item>
+        <item>303806</item>
+        <item>302019</item>
+        <item>303901</item>
+        <item>302016</item>
+        <item>303803</item>
+        <item>303803</item>
+        <item>303008</item>
+        <item>303328</item>
+        <item>302012</item>
+        <item>303104</item>
+        <item>303008</item>
+        <item>303702</item>
+        <item>302012</item>
+        <item>302022</item>
+        <item>303102</item>
+        <item>303905</item>
+        <item>303348</item>
+        <item>302006</item>
+        <item>303107</item>
+        <item>303107</item>
+        <item>303105</item>
+        <item>303012</item>
+        <item>303108</item>
+        <item>303120</item>
+        <item>303603</item>
+        <item>303120</item>
+        <item>303003</item>
+        <item>303901</item>
+        <item>303702</item>
+        <item>303106</item>
+        <item>303903</item>
+        <item>303338</item>
+        <item>303003</item>
+        <item>303901</item>
+        <item>303908</item>
+        <item>303908</item>
+        <item>302026</item>
+        <item>303001</item>
+        <item>303901</item>
+        <item>303804</item>
+        <item>302004</item>
+        <item>303301</item>
+        <item>302028</item>
+        <item>303302</item>
+        <item>303903</item>
+        <item>303106</item>
+        <item>302002</item>
+        <item>303802</item>
+        <item>303602</item>
+        <item>303604</item>
+        <item>303807</item>
+        <item>303338</item>
+        <item>302021</item>
+        <item>303104</item>
+        <item>303905</item>
+        <item>302023</item>
+        <item>302005</item>
+        <item>303102</item>
+        <item>302013</item>
+        <item>302005</item>
+        <item>303905</item>
+        <item>303903</item>
+    </string-array>
+
+    <string name="title_activity_donate">Donate</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="enter_feedback_here">Enter Feedback Here</string>
+    <string name="uppers_shirt_and_t_shirts">Uppers (Shirt and T-shirts )</string>
+    <string name="select_gender">Select Gender:</string>
+    <string name="ironing">Ironing</string>
+    <string name="refer_and_earn">Refer and Earn</string>
+    <string name="title_activity_contact">ContactActivity</string>
+    <string name="visit_website">Visit Website</string>
+    <string name="title_activity_customer">FarmsBook</string>
+    <string name="title_activity_seller">FarmsBook</string>
+    <string name="title_activity_list">List of Items</string>
+    <string name="title_activity_cart">Cart</string>
+    <string name="cart">Cart</string>
+    <string name="title_activity_pre_login">PreLogin</string>
+
+
+</resources>

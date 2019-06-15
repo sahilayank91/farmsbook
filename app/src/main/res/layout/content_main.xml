@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    android:screenOrientation="portrait"
+    tools:showIn="@layout/app_bar_main_customer">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:id="@+id/customerLayout"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="101dp"
+            android:id="@+id/view_pager_card"
+            android:layout_margin="@dimen/nav_header_vertical_spacing"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="101dp" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dots_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/customer"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:context=".MainActivity">
+
+
+            <LinearLayout
+                android:id="@+id/items"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/uploadImage"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+                    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/nav_header_vertical_spacing"
+                    android:text="Gallery"
+                    android:textColor="@color/white" />
+
+                <!--<Button-->
+                <!--android:id="@+id/captureImage"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="@dimen/nav_header_vertical_spacing"-->
+                <!--android:layout_weight="0"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:padding="@dimen/nav_header_vertical_spacing"-->
+                <!--android:text="Camera"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:visibility="gone" />-->
+
+                <Button
+                    android:id="@+id/addManually"
+                    android:layout_width="113dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/nav_header_vertical_spacing"
+                    android:text="Manually"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_product"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:visibility="visible">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/productName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:hint="Product"
+                            android:inputType="textPersonName" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_brandName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+                        android:layout_weight="1"
+                        android:visibility="visible">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/brandName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:hint="Brand"
+                            android:inputType="textPersonName" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+
+                        android:layout_weight="1"
+                        android:visibility="visible">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/quantity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:hint="Quantity"
+                            android:inputType="number" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1" />
+
+
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/addItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="Add Item"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/orderlist_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_marginBottom="45dp"
+                android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                android:layout_weight="1"
+                android:visibility="visible" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="341dp"
+                android:layout_weight="1"
+                android:src="@drawable/placeholder_image"
+                android:layout_marginBottom="45dp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/seller"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/places_ic_search"
+            android:hint="Search"
+            android:visibility="visible"
+            android:layout_margin="@dimen/nav_header_vertical_spacing"
+            android:id="@+id/search"
+            />
+
+
+        <include
+            layout="@layout/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="73dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="45dp"
+            android:layout_marginEnd="26dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_add_white_24dp"
+            tools:ignore="VectorDrawableCompat"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="26dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submitImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        android:text="Continue"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white" />
+</RelativeLayout>

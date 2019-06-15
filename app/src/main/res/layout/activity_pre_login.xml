@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".Views.PreLogin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:src="@drawable/logofarmsbook" />
+    <Button
+        android:id="@+id/existing"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:text="Existing User" />
+
+    <Button
+        android:id="@+id/newuser"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/rounded_corner"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:layout_height="wrap_content"
+        android:text="New User" />
+</LinearLayout>

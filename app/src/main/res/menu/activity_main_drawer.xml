@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_box_black_24dp"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_card_travel_black_24dp"
+            android:title="@string/orders" />
+        <item
+            android:id="@+id/nav_completed_order"
+            android:icon="@drawable/ic_card_travel_black_24dp"
+            android:title="Completed Order" />
+
+        <item
+            android:id="@+id/nav_seller_order"
+            android:icon="@drawable/ic_card_travel_black_24dp"
+            android:title="Orders" />
+
+    </group>
+
+
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/refer_and_earn"
+                app:showAsAction="ifRoom"
+                />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_assignment_black_24dp"
+                android:title="@string/feedback" />
+            <item
+                android:id="@+id/nav_terms"
+                android:icon="@drawable/ic_feedback_black_24dp"
+                android:title="@string/termsofuse" />
+            <item
+                android:id="@+id/nav_visit_website"
+                android:icon="@drawable/ic_feedback_black_24dp"
+                android:title="@string/visit_website" />
+            <item
+                android:id="@+id/nav_contactus"
+                android:icon="@drawable/ic_person_pin_black_24dp"
+                android:title="@string/contact_us" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+
+    <item android:title="Admin">
+
+        <menu>
+            <item
+                android:id="@+id/nav_add_image"
+                android:icon="@drawable/ic_add_circle_outline_black_24dp"
+                android:title="Add Offers or Images"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/nav_add_item"
+                android:icon="@drawable/ic_add_circle_outline_black_24dp"
+                android:title="Add Product"
+                app:showAsAction="ifRoom"/>
+
+            <item
+                android:id="@+id/nav_add_seller"
+                android:icon="@drawable/ic_add_circle_outline_black_24dp"
+                android:title="Add Seller"
+                app:showAsAction="ifRoom"/>
+        </menu>
+
+    </item>
+
+</menu>

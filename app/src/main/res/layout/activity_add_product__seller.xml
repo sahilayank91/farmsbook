@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.AddProduct_Seller">
+
+    <EditText
+        android:id="@+id/product_name"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:ems="10"
+        android:hint="Name of the Product"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Add Your Product" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignStart="@+id/product_name"
+        android:layout_marginBottom="-178dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Select Unit"
+
+        android:layout_alignLeft="@+id/product_name" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="178dp"
+        android:orientation="horizontal"
+        android:tag="Select type">
+
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="Kg"
+            android:backgroundTint="@color/colorPrimary"
+
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:text="L"
+            android:backgroundTint="@color/colorPrimary"
+
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/product_price"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="287dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Add the Price per Unit"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/product_submit"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="151dp"
+        android:background="@color/colorPrimary"
+        android:text="SUBMIT"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/product_brand"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/product_name"
+        android:layout_marginTop="228dp"
+        android:ems="10"
+        android:hint="Enter the Brand Name"
+        android:inputType="textPersonName"
+        android:layout_alignLeft="@+id/product_name" />
+</RelativeLayout>

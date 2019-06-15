@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/dialog_name"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="Product Name"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignStart="@+id/dialog_name"
+        android:layout_marginBottom="-90dp"
+        android:text="Select Unit"
+        android:layout_alignLeft="@+id/dialog_name" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="90dp"
+        android:orientation="horizontal"
+        android:tag="Select type"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="36dp">
+
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:text="Kg"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Litre"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/dialog_price"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:hint="Enter Price"
+        android:inputType="number" />
+</RelativeLayout>
