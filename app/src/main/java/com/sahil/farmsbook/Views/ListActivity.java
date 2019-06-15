@@ -10,6 +10,7 @@ import android.graphics.drawable.VectorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -68,8 +70,55 @@ public class ListActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_cart, menu);
-        return true;
+
+
+
+        MenuItem searchViewItem = menu.findItem(R.id.app_bar_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+             /*   if(list.contains(query)){
+                    adapter.getFilter().filter(query);
+                }else{
+                    Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+                }*/
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
+
+
+
+
+
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        ArrayList<Product> filterdNames = new ArrayList<>();
+
+        for(int i=0;i<listProduct.size();i++){
+            if (listProduct.get(i).getName().toLowerCase().contains(text.toLowerCase())) {
+                //adding the element to filtered list
+                filterdNames.add(listProduct.get(i));
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        sellerProductListAdapter.filterList(filterdNames);
+    }
+
+
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         Gson gson = new Gson();

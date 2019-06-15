@@ -166,6 +166,7 @@ public class YourOrders extends AppCompatActivity {
                     if(jsonArray.length()==0){
 
                         emptyorder.setVisibility(View.VISIBLE);
+                        mSwipeRefreshLayout.setVisibility(View.GONE);
                         Toast.makeText(YourOrders.this,"No order currently in the list",Toast.LENGTH_SHORT).show();
                     }
                 }
