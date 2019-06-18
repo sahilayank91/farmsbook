@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -77,6 +79,8 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     String slot = "Today";
     RadioButton rb1, rb2;
     ImageView editAddress;
+    LinearLayout discountlayout, actualcostlayout,finaltotallayout;
+    TextView discount,actualtotal;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -102,6 +106,11 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             mMapView.getMapAsync(this);
         }
 
+        discount = findViewById(R.id.totalDiscount);
+        actualtotal = findViewById(R.id.actualtotal);
+        finaltotallayout = findViewById(R.id.finaltotal);
+
+
         address = findViewById(R.id.address);
         pincode = findViewById(R.id.pincode);
 
@@ -109,6 +118,9 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         deliverLater = findViewById(R.id.deliverLater);
         checkoutButton = findViewById(R.id.checkoutbutton);
         editAddress = findViewById(R.id.editAddressButton);
+
+        discountlayout = findViewById(R.id.discount);
+        actualcostlayout = findViewById(R.id.actualcost);
 
         rb1 = findViewById(R.id.radioButton1);
         rb2 = findViewById(R.id.radioButton2);
@@ -125,6 +137,21 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 //
 //        orderId = getIntent().getStringExtra("orderId");
         total = getIntent().getStringExtra("total");
+
+        if(Integer.parseInt(total)>100){
+            actualtotal.setText(total);
+            finaltotallayout.setVisibility(View.VISIBLE);
+            discountlayout.setVisibility(View.VISIBLE);
+            discount.setText("Rs "+String.valueOf(Integer.parseInt(total)*0.2));
+            mTotal.setText("Rs "+String.valueOf(Integer.parseInt(total)-Integer.parseInt(total)*0.2));
+
+            total = String.valueOf(Integer.parseInt(total)-Integer.parseInt(total)*0.2);
+        }else{
+            finaltotallayout.setVisibility(View.GONE);
+            discountlayout.setVisibility(View.GONE);
+            actualtotal.setText(total);
+        }
+
 
         mTotal.setText("Rs " + total);
 

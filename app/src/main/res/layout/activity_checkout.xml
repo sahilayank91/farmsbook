@@ -78,45 +78,134 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:background="@color/colorAccent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/c"
-                    android:layout_weight="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:padding="@dimen/activity_vertical_margin"
-                    android:gravity="start"
-                    android:layout_gravity="center"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:text="Cost(Inclusive of all Taxes)"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/actualcost"
+                    android:background="@color/colorAccent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+
+                        android:layout_weight="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:gravity="start"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="Cost(Inclusive of all Taxes)"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/totalCost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/c"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:padding="@dimen/activity_vertical_margin"
-                    android:layout_weight="1"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:text="100"
-                    android:textColor="@color/background_gradient_start"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
+                    <TextView
+                        android:id="@+id/actualtotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/c"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_weight="1"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="100"
+                        android:textColor="@color/background_gradient_start"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
 
-                    android:layout_marginRight="26dp" />
+                  />
 
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/discount"
+                    android:background="@color/colorAccent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:gravity="start"
+                        android:maxLines="2"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="Discount ( 20 % )"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/totalDiscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_weight="1"
+                        android:text="100"
+                        android:textColor="@color/background_gradient_start"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+ />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/finaltotal"
+                    android:background="@color/colorAccent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/c"
+                        android:layout_weight="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:gravity="start"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="Total Cost"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/totalCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_weight="1"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="100"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
 
             </LinearLayout>
+
+
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
