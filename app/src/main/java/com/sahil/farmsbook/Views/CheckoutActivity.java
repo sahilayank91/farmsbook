@@ -81,6 +81,8 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     ImageView editAddress;
     LinearLayout discountlayout, actualcostlayout,finaltotallayout;
     TextView discount,actualtotal;
+    Double numDiscount = 0.0;
+    ImageView info;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -138,18 +140,27 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 //        orderId = getIntent().getStringExtra("orderId");
         total = getIntent().getStringExtra("total");
 
-        if(Integer.parseInt(total)>100){
+
+        //Getting the cart items
+        try {
+            getCart();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        if(Integer.parseInt(total)>100 && numDiscount>0){
             actualtotal.setText(total);
             finaltotallayout.setVisibility(View.VISIBLE);
             discountlayout.setVisibility(View.VISIBLE);
-            discount.setText("Rs "+String.valueOf(Integer.parseInt(total)*0.2));
-            mTotal.setText("Rs "+String.valueOf(Integer.parseInt(total)-Integer.parseInt(total)*0.2));
+            discount.setText("Rs "+String.valueOf(numDiscount));
+            mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)-numDiscount));
 
-            total = String.valueOf(Integer.parseInt(total)-Integer.parseInt(total)*0.2);
+            total = String.valueOf(Double.parseDouble(total)-numDiscount);
         }else{
             finaltotallayout.setVisibility(View.GONE);
             discountlayout.setVisibility(View.GONE);
-            actualtotal.setText(total);
+            actualtotal.setText("Rs "+total);
         }
 
 
@@ -255,12 +266,6 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         });
 
 
-        //Getting the cart items
-        try {
-            getCart();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
         checkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -283,6 +288,16 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         });
 
 
+
+        info = findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CheckoutActivity.this,"Offer valid on Vegetables and Fruits only!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
 
@@ -295,10 +310,14 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
         HashMap<String, String> cartmap = gson.fromJson(order, type);
 
+        Integer sub = 0;
         for (HashMap.Entry<String, String> entry : cartmap.entrySet()) {
             Product product = new Product(new JSONObject(entry.getValue()));
             listProduct.add(product);
             totalCost  = totalCost  + Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice());
+            if(!product.getType().equals("Grain")){
+                numDiscount = numDiscount+(Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice()))*0.2;
+            }
         }
 
 
