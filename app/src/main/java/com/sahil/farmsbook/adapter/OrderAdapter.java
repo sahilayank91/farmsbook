@@ -232,7 +232,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         for(int i=0;i<jsonArray.length();i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             Product product = new Product(jsonObject);
-            arrayAdapter.add("Name - " + product.getName() + ",Brand - " + product.getBrand() + ", Quantity -" + product.getQuantity() + "Unit - "+product.getUnit()+", Price - Rs "+  product.getTotal());
+            arrayAdapter.add("Product - " + product.getName() + ",Brand - " + product.getBrand() + ", Quantity -" + product.getQuantity() + "Unit - "+product.getUnit()+", Price - Rs "+  product.getTotal());
         }
 
         builderSingle.setPositiveButton("OK", new DialogInterface.OnClickListener() {

@@ -55,9 +55,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
                     android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-                    android:text="TextView"
+                    android:text="Flat Address"
                     android:layout_marginStart="@dimen/nav_header_vertical_spacing" />
-
+                <TextView
+                    android:id="@+id/locality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+                    android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                    android:text="Locality"
+                    android:layout_marginStart="@dimen/nav_header_vertical_spacing" />
                 <TextView
                     android:id="@+id/pincode"
                     android:layout_width="match_parent"
@@ -65,7 +72,7 @@
                     android:layout_marginTop="@dimen/nav_header_vertical_spacing"
                     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
                     android:layout_marginBottom="16dp"
-                    android:text="TextView"
+                    android:text="Pincode"
                      />
 
 

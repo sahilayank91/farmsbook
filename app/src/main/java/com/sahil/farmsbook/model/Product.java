@@ -71,26 +71,23 @@ public class Product {
 
 
 
-
-        if(order.has("e"))this._id = order.getString("e");
-        if(order.has("l"))this.created_at = order.getString("l");
-        if(order.has("f"))this.hindiname = order.getString("f");
         if(order.has("a"))this.name = order.getString("a");
-        if(order.has("unitQuantity"))this.quantity = order.getString("unitQuantity");
-        if(order.has("unitlist")){
-            setUnits(order.getString("unitlist"));
-        }
-        if (order.has("k")) {
-            setUnits(order.getString("k"));
-
-        }
-        if(order.has("d"))this.unit = order.getString("d");
-        if(order.has("g"))this.imageurl = order.getString("g");
-        if(order.has("c"))this.quantity = order.getString("c");
         if(order.has("b"))this.price = order.getString("b");
-        if(order.has("i"))this.brand = order.getString("i");
+        if(order.has("c"))this.quantity = order.getString("c");
+        if(order.has("d"))this.unit = order.getString("d");
+        if(order.has("e"))this._id = order.getString("e");
+        if(order.has("f"))this.hindiname = order.getString("f");
+        if(order.has("g"))this.imageurl = order.getString("g");
         if(order.has("h"))this.total = order.getString("h");
-        if(order.has("j"))this.outofstock = order.getString("j");
+        if(order.has("i"))this.brand = order.getString("i");
+        if(order.has("j"))this.type = order.getString("j");
+        if(order.has("k"))this.outofstock = order.getString("k");
+        if (order.has("l")) {
+            setUnits(order.getString("l"));
+        }
+        if(order.has("m"))this.created_at = order.getString("m");
+
+
 
 
 

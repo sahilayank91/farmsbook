@@ -63,7 +63,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     MapView mMapView;
     GoogleMap mGoogleMap;
     private TextView rateCardView;
-    public TextView addressContainer,mTotal, address, pincode;
+    public TextView addressContainer,mTotal, address, locality,pincode;
     Double latitude=0.0,longitude=0.0;
     Button getPlaceButton;
     private EditText orderPickupDate;
@@ -115,6 +115,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         address = findViewById(R.id.address);
         pincode = findViewById(R.id.pincode);
+        locality = findViewById(R.id.locality);
 
         deliverNow = findViewById(R.id.deliverNow);
         deliverLater = findViewById(R.id.deliverLater);
@@ -150,7 +151,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
 
         if(Integer.parseInt(total)>100 && numDiscount>0){
-            actualtotal.setText(total);
+            actualtotal.setText("Rs "+total);
             finaltotallayout.setVisibility(View.VISIBLE);
             discountlayout.setVisibility(View.VISIBLE);
             discount.setText("Rs "+String.valueOf(numDiscount));
@@ -169,6 +170,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         String useraddress = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("flataddress","Flat Address Not Registered");
         String userpincode = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode","Pincode not available");
+        String userlocality = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("locality","Locality not available");
 
         if(useraddress.equals("Flat Address Not Registered")){
            Toast.makeText(CheckoutActivity.this,"Address not provided, please fill the address in Profile Section", Toast.LENGTH_LONG).show();
@@ -176,8 +178,12 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             startActivity(intent);
             finish();
         }
-
-
+        if(userlocality.equals("Locality not available")){
+            Toast.makeText(CheckoutActivity.this,"Locality not provided, please fill the locality in Profile Section", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
         if(userpincode.equals("Pincode not available")){
             Toast.makeText(CheckoutActivity.this,"Pincode not available, please fill the pincode in Profile Section", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
@@ -187,7 +193,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         address.setText(useraddress);
         pincode.setText("Pincode - " + userpincode);
-
+        locality.setText(userlocality);
 
         requestPermission();
 
@@ -305,7 +311,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         Gson gson = new Gson();
 
         order = SharedPreferenceSingleton.getInstance(CheckoutActivity.this).getString("cart","Can't find the value");
-
+        Log.e("order:",order);
 
         java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
         HashMap<String, String> cartmap = gson.fromJson(order, type);

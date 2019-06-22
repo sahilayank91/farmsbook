@@ -23,6 +23,8 @@ public class UserData {
     private String longitude;
 
 
+    private String locality;
+
 
     private String shop;
     private String ifsc;
@@ -83,6 +85,7 @@ public class UserData {
         setLongitude(user.getLongitude());
         setFlataddress(user.getFlataddress());
         setPincode(user.getPincode());
+        setLocality(user.getLocality());
 
     }
 
@@ -99,6 +102,7 @@ public class UserData {
             this.pincode = SharedPreferenceSingleton.getInstance(context).getString("pincode");
             this.shop = SharedPreferenceSingleton.getInstance(context).getString("shop");
             this.pincode = SharedPreferenceSingleton.getInstance(context).getString("pincode");
+            this.locality = SharedPreferenceSingleton.getInstance(context).getString("locality");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,6 +127,7 @@ public class UserData {
         user.setPincode(this.pincode);
         user.setRole(this.role);
         user.setShop(this.shop);
+        user.setLocality((this.locality));
         return user;
     }
 
@@ -139,6 +144,14 @@ public class UserData {
     public void setEmail(String email) {
         this.email = email;
         SharedPreferenceSingleton.getInstance(context).put("email", email);
+    }
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+        SharedPreferenceSingleton.getInstance(context).put("locality", locality);
     }
 
     public String getFirstname() {

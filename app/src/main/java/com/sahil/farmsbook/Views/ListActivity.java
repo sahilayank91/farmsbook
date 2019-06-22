@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -123,65 +122,53 @@ public class ListActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         Gson gson = new Gson();
 
-        String cart = SharedPreferenceSingleton.getInstance(ListActivity.this).getString("cart",null);
-
-        if(cart==null){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setCount(this, "0", menu);
-            }
-        }else{
-            Type type = new TypeToken<HashMap<String, String>>() {}.getType();
-            HashMap<String, String> cartmap = gson.fromJson(cart, type);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setCount(this, String.valueOf(cartmap.size()), menu);
-            }
-        }
+//        String cart = SharedPreferenceSingleton.getInstance(ListActivity.this).getString("cart",null);
+//
+//        if(cart==null){
+//            setCount(this, "0", menu);
+//        }else{
+//            java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>() {}.getType();
+//            HashMap<String, String> cartmap = gson.fromJson(cart, type);
+//            setCount(this, String.valueOf(cartmap.size()), menu);
+//        }
         return true;
     }
 
     public void update(){
         Gson gson = new Gson();
-
-        Integer total = 0;
-        String cart = SharedPreferenceSingleton.getInstance(ListActivity.this).getString("cart",null);
-
-        if(cart==null){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setCount(this, "0", this.menu);
-            }
-        }else{
-            Type type = new TypeToken<HashMap<String, String>>() {}.getType();
-            HashMap<String, String> cartmap = gson.fromJson(cart, type);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                setCount(this, String.valueOf(cartmap.size()), this.menu);
-            }
-        }
+//
+//        Integer total = 0;
+//        String cart = SharedPreferenceSingleton.getInstance(ListActivity.this).getString("cart",null);
+//
+//        if(cart==null){
+//            setCount(this, "0", menu);
+//        }else{
+//            java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>() {}.getType();
+//            HashMap<String, String> cartmap = gson.fromJson(cart, type);
+//            setCount(this, String.valueOf(cartmap.size()), menu);
+//        }
 
 
     }
 
-
-    public void setCount(Context context, String count, Menu menu) {
-        MenuItem menuItem = menu.findItem(R.id.action_cart);
-        VectorDrawable icons = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            icons = (VectorDrawable) menuItem.getIcon();
-        }
-        LayerDrawable icon = new LayerDrawable(new Drawable [] { icons });
-        CountDrawable badge;
-
-        // Reuse drawable if possible
-        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_group_count);
-        if (reuse != null && reuse instanceof CountDrawable) {
-            badge = (CountDrawable) reuse;
-        } else {
-            badge = new CountDrawable(context);
-        }
-
-        badge.setCount(count);
-        icon.mutate();
-        icon.setDrawableByLayerId(R.id.ic_group_count, badge);
-    }
+//    public void setCount(Context context, String count, Menu menu) {
+//        MenuItem menuItem = menu.findItem(R.id.action_cart);
+//        LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
+//
+//        CountDrawable badge;
+//
+//        // Reuse drawable if possible
+//        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_group_count);
+//        if (reuse != null && reuse instanceof CountDrawable) {
+//            badge = (CountDrawable) reuse;
+//        } else {
+//            badge = new CountDrawable(context);
+//        }
+//
+//        badge.setCount(count);
+//        icon.mutate();
+//        icon.setDrawableByLayerId(R.id.ic_group_count, badge);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

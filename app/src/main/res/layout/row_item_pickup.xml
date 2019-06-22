@@ -156,13 +156,20 @@
                    android:text="Flat Address"
                    android:layout_weight="1"
                    />
-
-               <TextView
+            <TextView
                 android:id="@+id/locality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="4"
                 android:text="Locality"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/landmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="Landmark"
                 android:layout_weight="1"
                 />
 

@@ -33,7 +33,7 @@ import com.sahil.farmsbook.utilities.SharedPreferenceSingleton;
 public class ProfileActivity extends AppCompatActivity {
     EditText firstname,lastname;
     TextView phone,email;
-    EditText city,flat, shop;
+    EditText city,flat, shop,locality;
     EditText pincode;
     Double latitude,longitude;
     Button save;
@@ -82,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
         shop = findViewById(R.id.shop);
         city = findViewById(R.id.city);
         save  = findViewById(R.id.save);
+        locality = findViewById(R.id.locality);
         String fname = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("firstname", "User Not Registered");
         String lname = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("lastname", "User Not Registered");
 
@@ -95,7 +96,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         role= SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("role", "User Not Registered");
-        Toast.makeText(ProfileActivity.this,role,Toast.LENGTH_SHORT).show();
 
         if(role.equals("Seller")){
             flat.setVisibility(View.GONE);
@@ -110,6 +110,13 @@ public class ProfileActivity extends AppCompatActivity {
         String mShop =  SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("shop", "Not Available");
         String mCity =SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("city", "Not Available");
         String mPincode = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode", "Not Available");
+        String loc = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("locality", "Locality not provided");
+
+        if(loc.equals("Locality not provided")){
+            locality.setHint("Enter your locality");
+        }else{
+            locality.setText(loc);
+        }
         if(mFlatAddress.equals("Flat Address Not Registered")){
             flat.setHint("Enter Flat Address");
         }else{
@@ -159,6 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
             params.put("firstname", firstname.getText().toString());
             params.put("lastname", lastname.getText().toString());
             params.put("pincode",pincode.getText().toString());
+            params.put("locality",locality.getText().toString());
 
             if(role.equals("Seller")){
                 params.put("shop",shop.getText().toString());

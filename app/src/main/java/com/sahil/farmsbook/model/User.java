@@ -23,6 +23,7 @@ public class User {
     private String flataddress;
 
 
+    private String locality;
 
     private String ifsc;
     private String gst;
@@ -47,8 +48,17 @@ public class User {
         if(data.has("shop"))this.shop = data.getString("shop");
         if(data.has("gst"))this.gst = data.getString("gst");
         if(data.has("ifsc"))this.ifsc = data.getString("ifsc");
+        if(data.has("locality"))this.locality = data.getString("locality");
+
     }
 
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
     public String getShop() {
         return shop;
     }

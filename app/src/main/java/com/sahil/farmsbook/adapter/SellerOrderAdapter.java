@@ -120,10 +120,17 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
 
         holder.orderid.setText(current.get_id());
         holder.orderstatus.setText(current.getOrderstatus());
-        holder.name.setText(current.getCustomer().getFirstname() + " " + current.getCustomer().getLastname());
+        holder.name.setText(current.getCustomer().getFirstname());
         holder.city.setText("City - " + current.getCustomer().getCity());
-        holder.locality.setText("Locality - "+current.getLocality());
-        holder.flataddress.setText(current.getCustomer().getFlataddress());
+
+        holder.flataddress.setText("Flat address- "+current.getCustomer().getFlataddress());
+        if(current.getCustomer().getLocality()!=null){
+            holder.locality.setText("Locality - " + current.getCustomer().getLocality());
+        }else{
+            holder.locality.setVisibility(View.GONE);
+        }
+        holder.landmark.setText("Landmark - "+current.getLocality());
+
         holder.pincode.setText("Pincode - " + current.getCustomer().getPincode());
 
         if(current.getTime()!=null){
@@ -282,7 +289,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         for(int i=0;i<jsonArray.length();i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             Product product = new Product(jsonObject);
-            arrayAdapter.add("Name - " + product.getName() + ",Brand - " + product.getBrand() + ", Quantity -" + product.getQuantity() + "Unit - "+product.getUnit()+", Price - Rs "+  product.getTotal());
+            arrayAdapter.add("Product - " + product.getName() + ",Brand - " + product.getBrand() + ", Quantity -" + product.getQuantity() + "Unit - "+product.getUnit()+", Price - Rs "+  product.getTotal());
 
         }
 
@@ -412,7 +419,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
     public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-        TextView orderid,flataddress, timingtext,orderdate,pincode,itemcount, orderdatetext,type,orderTime,orderpickupdate, orderstatus,orderservice,city,flat,locality,phone,name,total,totalText,offerapplied;
+        TextView orderid,flataddress, timingtext,orderdate,pincode,landmark,itemcount, orderdatetext,type,orderTime,orderpickupdate, orderstatus,orderservice,city,flat,locality,phone,name,total,totalText,offerapplied;
         Button navigate,edit,orderwork,refuseorder,call, viewOrder;
 
         private OrderViewHolder(View itemView) {
@@ -423,6 +430,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
             orderwork = itemView.findViewById(R.id.orderwork);
             city = itemView.findViewById(R.id.ordercity);
             locality = itemView.findViewById(R.id.locality);
+            landmark = itemView.findViewById(R.id.landmark);
             phone = itemView.findViewById(R.id.phone);
             navigate = itemView.findViewById(R.id.navigate);
             name = itemView.findViewById(R.id.cutomer_name);
