@@ -107,7 +107,7 @@
     <string name="getTodayOrders">&server;service/order/getTodayOrders/</string>
     <string name="confirmOrder">&server;service/order/confirmOrder/</string>
     <string name="getConfirmedOrders">&server;service/order/getConfirmedOrders/</string>
-    <string name="getUpcomingOrders">&server;service/order/getUpcomingOrders/</string>
+    <string name="getReceivedOrders">&server;service/order/getReceivedOrders/</string>
     <string name="getCompletedOrders">&server;service/order/getCompletedOrders/</string>
     <string name="getProcessedOrders">&server;service/order/getProcessedOrders/</string>
     <string name="verifyDelivery">&server;service/order/verifyDelivery/</string>

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sahil.farmsbook.R;
+import com.sahil.farmsbook.Views.fragment.ReceivedFragment;
 import com.sahil.farmsbook.Views.fragment.UpcomingFragment;
 import com.sahil.farmsbook.utilities.CountDrawable;
 
@@ -55,7 +56,7 @@ public class PickupActivity extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-//        adapter.addFragment(new TodayFragment(), "Recieved");
+        adapter.addFragment(new ReceivedFragment(), "Received");
         adapter.addFragment(new UpcomingFragment(), "Processed");
 //        adapter.addFragment(new PickedFragment(), "Confirmed");
         viewPager.setAdapter(adapter);

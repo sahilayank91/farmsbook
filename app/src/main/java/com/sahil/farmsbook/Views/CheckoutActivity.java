@@ -46,6 +46,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -81,7 +83,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     ImageView editAddress;
     LinearLayout discountlayout, actualcostlayout,finaltotallayout;
     TextView discount,actualtotal;
-    Double numDiscount = 0.0;
+    double numDiscount = 0.0;
     ImageView info;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -154,7 +156,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             actualtotal.setText("Rs "+total);
             finaltotallayout.setVisibility(View.VISIBLE);
             discountlayout.setVisibility(View.VISIBLE);
-            discount.setText("Rs "+String.valueOf(numDiscount));
+            discount.setText("Rs "+ String.valueOf(numDiscount));
             mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)-numDiscount));
 
             total = String.valueOf(Double.parseDouble(total)-numDiscount);
@@ -233,7 +235,8 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         Calendar rightNow = Calendar.getInstance();
         final int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-        if(hour>17){
+        Log.e("hour",String.valueOf(hour));
+        if(hour>16){
             deliverNow.setVisibility(View.GONE);
         }
 
@@ -246,7 +249,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                 }
                 slot = "Today";
                 timingCardView.setVisibility(View.VISIBLE);
-                if(hour>11){
+                if(hour>9){
                     rb1.setVisibility(View.GONE);
                 }
                 deliverNow.setVisibility(View.GONE);
@@ -323,6 +326,10 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             totalCost  = totalCost  + Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice());
             if(!product.getType().equals("Grain")){
                 numDiscount = numDiscount+(Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice()))*0.2;
+
+                numDiscount = BigDecimal.valueOf(numDiscount)
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue();
             }
         }
 

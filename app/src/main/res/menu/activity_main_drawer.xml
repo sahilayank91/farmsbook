@@ -57,7 +57,16 @@
         </menu>
     </item>
 
+    <item android:title="Update">
+        <menu>
+            <item
+                android:id="@+id/nav_update"
+                android:icon="@drawable/ic_system_update_black_24dp"
+                android:title="Update App"
+                app:showAsAction="ifRoom"/>
+        </menu>
 
+    </item>
     <item android:title="Admin">
 
         <menu>

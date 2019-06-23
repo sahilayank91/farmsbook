@@ -55,7 +55,7 @@ public class PickupActivity extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-//        adapter.addFragment(new TodayFragment(), "Recieved");
+//        adapter.addFragment(new ReceivedFragment(), "Recieved");
         adapter.addFragment(new UpcomingFragment(), "Processed");
 //        adapter.addFragment(new PickedFragment(), "Confirmed");
         viewPager.setAdapter(adapter);

@@ -112,11 +112,10 @@ public class ProfileActivity extends AppCompatActivity {
         String mPincode = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode", "Not Available");
         String loc = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("locality", "Locality not provided");
 
-        if(loc.equals("Locality not provided")){
-            locality.setHint("Enter your locality");
-        }else{
+        if (!loc.equals("Locality not provided")) {
             locality.setText(loc);
         }
+
         if(mFlatAddress.equals("Flat Address Not Registered")){
             flat.setHint("Enter Flat Address");
         }else{

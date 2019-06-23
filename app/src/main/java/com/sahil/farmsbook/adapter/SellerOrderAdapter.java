@@ -74,15 +74,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
     public void onBindViewHolder(@NonNull final OrderViewHolder holder, final int position) {
         final Order current = listOrders.get(position);
 
-//        if(current.getOrderstatus().equals("Recieved")){
-//            holder.navigate.setVisibility(View.GONE);
-//            holder.orderTime.setVisibility(View.GONE);
-//            holder.call.setVisibility(View.GONE);
-//            holder.orderwork.setVisibility(View.VISIBLE);
-//            holder.refuseorder.setVisibility(View.VISIBLE);
-//            holder.timingtext.setVisibility(View.GONE);
-//            holder.orderTime.setVisibility(View.GONE);
-//        }
+
 
 //        if(current.getOrderstatus().equals("Confirmed")){
 //            holder.navigate.setVisibility(View.GONE);
@@ -241,7 +233,13 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         });
 
 
-
+        if(current.getOrderstatus().equals("Received")){
+            holder.navigate.setVisibility(View.GONE);
+            holder.orderwork.setVisibility(View.GONE);
+            holder.timingtext.setVisibility(View.GONE);
+            holder.orderTime.setVisibility(View.GONE);
+            holder.call.setVisibility(View.GONE);
+        }
 
 
 
