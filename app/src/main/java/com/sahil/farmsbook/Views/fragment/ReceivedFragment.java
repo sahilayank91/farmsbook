@@ -1,6 +1,7 @@
 package com.sahil.farmsbook.Views.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import java.util.HashMap;
 
 import com.sahil.farmsbook.MainActivity;
 import com.sahil.farmsbook.R;
+import com.sahil.farmsbook.Views.LoginActivity;
 import com.sahil.farmsbook.adapter.SellerOrderAdapter;
 import com.sahil.farmsbook.model.Order;
 import com.sahil.farmsbook.utilities.Server;
@@ -76,10 +78,20 @@ public class ReceivedFragment extends Fragment {
     @SuppressLint("StaticFieldLeak")
     class GetOrders extends AsyncTask<String, String, String> {
         HashMap<String, String> params = new HashMap<>();
+
+
+
+        private ProgressDialog progress;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             String userid = SharedPreferenceSingleton.getInstance(getContext()).getString("_id","User Not Registered");
+            progress=new ProgressDialog(getContext());
+            progress.setMessage("Fetching Order Details..");
+//            progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progress.setIndeterminate(true);
+            progress.setProgress(0);
+            progress.show();
 
         }
 
@@ -104,7 +116,7 @@ public class ReceivedFragment extends Fragment {
             super.onPostExecute(s);
 
 
-
+            progress.dismiss();
             try {
 
                 JSONObject jsonObject =new JSONObject(s);

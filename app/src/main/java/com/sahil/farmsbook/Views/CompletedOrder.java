@@ -81,10 +81,6 @@ public class CompletedOrder extends AppCompatActivity {
 
         emptyorder = findViewById(R.id.emptyorder);
 
-
-
-
-
         String role =  SharedPreferenceSingleton.getInstance(CompletedOrder.this).getString("role","User Not Registered");
 
 
@@ -138,7 +134,7 @@ public class CompletedOrder extends AppCompatActivity {
             try {
                 Gson gson = new Gson();
                 String json = gson.toJson(params);
-                result = Server.post(getResources().getString(R.string.getCompletedOrders),json);
+                result = Server.post(getResources().getString(R.string.getCompletedOrderByUserId),json);
             } catch (IOException e) {
                 e.printStackTrace();
             }

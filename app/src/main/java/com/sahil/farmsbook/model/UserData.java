@@ -32,6 +32,8 @@ public class UserData {
 
 
 
+    private String credit;
+
     private String role;
 
 
@@ -86,6 +88,7 @@ public class UserData {
         setFlataddress(user.getFlataddress());
         setPincode(user.getPincode());
         setLocality(user.getLocality());
+        setCredit(user.getCredit());
 
     }
 
@@ -103,6 +106,7 @@ public class UserData {
             this.shop = SharedPreferenceSingleton.getInstance(context).getString("shop");
             this.pincode = SharedPreferenceSingleton.getInstance(context).getString("pincode");
             this.locality = SharedPreferenceSingleton.getInstance(context).getString("locality");
+            this.credit = SharedPreferenceSingleton.getInstance(context).getString("credit");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,9 +132,17 @@ public class UserData {
         user.setRole(this.role);
         user.setShop(this.shop);
         user.setLocality((this.locality));
+        user.setCredit(this.credit);
         return user;
     }
+    public String getCredit() {
+        return credit;
+    }
 
+    public void setCredit(String credit) {
+        this.credit = credit;
+        SharedPreferenceSingleton.getInstance(context).put("credit", credit);
+    }
 
     public void setUser_id(String user_id) {
         this._id = user_id;

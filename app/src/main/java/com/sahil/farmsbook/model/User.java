@@ -31,6 +31,9 @@ public class User {
     private String latitude;
     private String longitude;
 
+
+    private String credit;
+
     public User(JSONObject data) throws JSONException {
         if(data.has("_id"))this._id=data.getString("_id");
         if(data.has("firstname"))this.firstname=data.getString("firstname");
@@ -49,7 +52,15 @@ public class User {
         if(data.has("gst"))this.gst = data.getString("gst");
         if(data.has("ifsc"))this.ifsc = data.getString("ifsc");
         if(data.has("locality"))this.locality = data.getString("locality");
+        if(data.has("credit"))this.locality = data.getString("credit");
 
+    }
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
     }
 
     public String getLocality() {

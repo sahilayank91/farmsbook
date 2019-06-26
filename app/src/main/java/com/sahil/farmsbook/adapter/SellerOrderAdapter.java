@@ -236,7 +236,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         if(current.getOrderstatus().equals("Received")){
             holder.navigate.setVisibility(View.GONE);
             holder.orderwork.setVisibility(View.GONE);
-            holder.timingtext.setVisibility(View.GONE);
+//            holder.timingtext.setVisibility(View.GONE);
             holder.orderTime.setVisibility(View.GONE);
             holder.call.setVisibility(View.GONE);
         }
@@ -309,29 +309,32 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
     }
 
     private void openCancelDialog(View view, final int position){
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context1);
-        alertDialogBuilder.setMessage("Are you sure you want to cancel the Order");
-        alertDialogBuilder.setIcon(R.drawable.newicon);
-        alertDialogBuilder.setPositiveButton("yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(context1,"You clicked yes button",Toast.LENGTH_LONG).show();
+
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context1);
+            alertDialogBuilder.setMessage("Are you sure you want to cancel the Order");
+            alertDialogBuilder.setIcon(R.drawable.newicon);
+            alertDialogBuilder.setPositiveButton("yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Toast.makeText(context1, "You clicked yes button", Toast.LENGTH_LONG).show();
                             new CancelOrder().execute(listOrders.get(position).get_id());
                             listOrders.remove(position);
-                            this.notify();
-                    }
-                });
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, listOrders.size());
+                        }
+                    });
 
-        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+            alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
     }
     private void showEnterOTPDialog(final String id,final String status) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context1);

@@ -186,6 +186,10 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                startActivity(intent);
            }
        });
+
+
+
+//       new getCredit().execute();
     }
 
 
@@ -523,6 +527,62 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                 Gson gson = new Gson();
                 String json = gson.toJson(params);
                 result = Server.post(getResources().getString(R.string.getOffer),json);
+                success = true;
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+            System.out.println("Result:" + result);
+            return result;
+        }
+    }
+
+
+
+
+    @SuppressLint("StaticFieldLeak")
+    class getCredit extends AsyncTask<String, String, String> {
+        boolean success = false;
+        HashMap<String, String> params = new HashMap<>();
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            params.put("_id",SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("_id","Customer Not Registered"));
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (success) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    if(jsonObject.has("credit")){
+                        SharedPreferenceSingleton.getInstance(CustomerActivity.this).put("credit", jsonObject.getString("credit"));
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = "";
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(params);
+                result = Server.post(getResources().getString(R.string.getCredit),json);
                 success = true;
             } catch (Exception e){
                 e.printStackTrace();

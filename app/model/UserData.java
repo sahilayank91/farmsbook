@@ -30,6 +30,9 @@ public class UserData {
 
 
 
+    private String credit;
+
+
     private String role;
 
 
@@ -123,9 +126,16 @@ public class UserData {
         user.setPincode(this.pincode);
         user.setRole(this.role);
         user.setShop(this.shop);
+        user.setCredit(this.credit);
         return user;
     }
+    public String getCredit() {
+        return credit;
+    }
 
+    public void setCredit(String credit) {
+        this.credit = credit;
+    }
 
     public void setUser_id(String user_id) {
         this._id = user_id;

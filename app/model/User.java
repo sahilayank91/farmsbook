@@ -30,6 +30,9 @@ public class User {
     private String latitude;
     private String longitude;
 
+
+    private String credit;
+
     public User(JSONObject data) throws JSONException {
         if(data.has("_id"))this._id=data.getString("_id");
         if(data.has("firstname"))this.firstname=data.getString("firstname");
@@ -47,6 +50,14 @@ public class User {
         if(data.has("shop"))this.shop = data.getString("shop");
         if(data.has("gst"))this.gst = data.getString("gst");
         if(data.has("ifsc"))this.ifsc = data.getString("ifsc");
+        if(data.has("credit"))this.credit = data.getString("credit");
+    }
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
     }
 
     public String getShop() {

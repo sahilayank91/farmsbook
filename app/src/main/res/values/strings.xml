@@ -97,6 +97,7 @@
     <string name="changePasswordUsingPhone">&server;service/authenticate/changePasswordUsingPhone</string>
     <string name="updateUser">&server;service/authenticate/updateUser</string>
     <string name="checkIfUserExist">&server;service/authenticate/checkIfUserExist</string>
+    <string name="getCredit">&server;service/authenticate/getCredit</string>
 
 
     <!-- Order -->
@@ -109,6 +110,7 @@
     <string name="getConfirmedOrders">&server;service/order/getConfirmedOrders/</string>
     <string name="getReceivedOrders">&server;service/order/getReceivedOrders/</string>
     <string name="getCompletedOrders">&server;service/order/getCompletedOrders/</string>
+    <string name="getCompletedOrderByUserId">&server;service/order/getCompletedOrderByUserId/</string>
     <string name="getProcessedOrders">&server;service/order/getProcessedOrders/</string>
     <string name="verifyDelivery">&server;service/order/verifyDelivery/</string>
     <string name="verifyPickup">&server;service/order/verifyPickup/</string>

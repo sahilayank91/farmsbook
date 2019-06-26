@@ -69,8 +69,34 @@
                     android:textStyle="normal|bold"
                     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
                     android:textSize="15sp"
+                    android:visibility="gone"
                     android:id="@+id/brandName"
                     android:text="Brand - Anna"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/nav_header_vertical_spacing"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/discount" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:textStyle="bold"
+                        android:layout_gravity="start|center"
+                        android:text="20% off "/>
+                </LinearLayout>
+
+
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

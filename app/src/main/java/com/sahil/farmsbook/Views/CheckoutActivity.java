@@ -103,6 +103,32 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_checkout);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        String useraddress = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("flataddress","Flat Address Not Registered");
+        String userpincode = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode","Pincode not available");
+        String userlocality = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("locality","Locality not available");
+
+        if(useraddress.equals("Flat Address Not Registered")){
+            Toast.makeText(CheckoutActivity.this,"Address not provided, please fill the address in Profile Section", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(userlocality.equals("Locality not available")){
+            Toast.makeText(CheckoutActivity.this,"Locality not provided, please fill the locality in Profile Section", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(userpincode.equals("Pincode not available")){
+            Toast.makeText(CheckoutActivity.this,"Pincode not available, please fill the pincode in Profile Section", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
         mMapView = findViewById(R.id.mapView);
         if(mMapView!=null){
             mMapView.onCreate(null);
@@ -144,6 +170,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         total = getIntent().getStringExtra("total");
 
 
+
         //Getting the cart items
         try {
             getCart();
@@ -151,6 +178,9 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             e.printStackTrace();
         }
 
+        
+        String credit = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("credit","0");
+        int numCredit = Integer.parseInt(credit);
 
         if(Integer.parseInt(total)>100 && numDiscount>0){
             actualtotal.setText("Rs "+total);
@@ -169,29 +199,6 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         mTotal.setText("Rs " + total);
 
-
-        String useraddress = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("flataddress","Flat Address Not Registered");
-        String userpincode = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode","Pincode not available");
-        String userlocality = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("locality","Locality not available");
-
-        if(useraddress.equals("Flat Address Not Registered")){
-           Toast.makeText(CheckoutActivity.this,"Address not provided, please fill the address in Profile Section", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(userlocality.equals("Locality not available")){
-            Toast.makeText(CheckoutActivity.this,"Locality not provided, please fill the locality in Profile Section", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(userpincode.equals("Pincode not available")){
-            Toast.makeText(CheckoutActivity.this,"Pincode not available, please fill the pincode in Profile Section", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(CheckoutActivity.this,ProfileActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         address.setText(useraddress);
         pincode.setText("Pincode - " + userpincode);
@@ -249,7 +256,8 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                 }
                 slot = "Today";
                 timingCardView.setVisibility(View.VISIBLE);
-                if(hour>9){
+
+                 if(hour>=9){
                     rb1.setVisibility(View.GONE);
                 }
                 deliverNow.setVisibility(View.GONE);
