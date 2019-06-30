@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -54,6 +57,8 @@ import java.util.HashMap;
 
 import com.sahil.farmsbook.R;
 import com.sahil.farmsbook.model.Product;
+import com.sahil.farmsbook.model.User;
+import com.sahil.farmsbook.model.UserData;
 import com.sahil.farmsbook.utilities.Server;
 import com.sahil.farmsbook.utilities.SharedPreferenceSingleton;
 
@@ -82,9 +87,11 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     RadioButton rb1, rb2;
     ImageView editAddress;
     LinearLayout discountlayout, actualcostlayout,finaltotallayout;
-    TextView discount,actualtotal;
+    TextView discount,actualtotal,credit;
     double numDiscount = 0.0;
     ImageView info;
+    Double numCredit=0.0;
+    CheckBox usewallet;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -137,6 +144,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
         discount = findViewById(R.id.totalDiscount);
+        credit = findViewById(R.id.totalCredit);
         actualtotal = findViewById(R.id.actualtotal);
         finaltotallayout = findViewById(R.id.finaltotal);
 
@@ -144,6 +152,11 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         address = findViewById(R.id.address);
         pincode = findViewById(R.id.pincode);
         locality = findViewById(R.id.locality);
+
+        address.setText(useraddress);
+        pincode.setText("Pincode - " + userpincode);
+        locality.setText(userlocality);
+
 
         deliverNow = findViewById(R.id.deliverNow);
         deliverLater = findViewById(R.id.deliverLater);
@@ -160,6 +173,10 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
         timingCardView.setVisibility(View.GONE);
 
         checkoutButton.setVisibility(View.GONE);
+
+        usewallet = findViewById(R.id.usewallet);
+
+
 
 
         addressContainer = findViewById(R.id.address_container);
@@ -178,18 +195,18 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             e.printStackTrace();
         }
 
-        
-        String credit = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("credit","0");
-        int numCredit = Integer.parseInt(credit);
+
+        String cre = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("credit","0");
+        numCredit = Double.parseDouble(cre);
 
         if(Integer.parseInt(total)>100 && numDiscount>0){
             actualtotal.setText("Rs "+total);
             finaltotallayout.setVisibility(View.VISIBLE);
-            discountlayout.setVisibility(View.VISIBLE);
-            discount.setText("Rs "+ String.valueOf(numDiscount));
-            mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)-numDiscount));
-
-            total = String.valueOf(Double.parseDouble(total)-numDiscount);
+            discountlayout.setVisibility(View.GONE);
+            discount.setText("Rs "+ numCredit);
+            mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)));
+            credit.setText("Rs "+String.valueOf(numDiscount));
+            total = String.valueOf(Double.parseDouble(total));
         }else{
             finaltotallayout.setVisibility(View.GONE);
             discountlayout.setVisibility(View.GONE);
@@ -199,10 +216,50 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         mTotal.setText("Rs " + total);
 
+        usewallet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(Double.parseDouble(total)>100 && numDiscount>0 && Double.parseDouble(total)>numCredit){
+                        actualtotal.setText("Rs "+total);
+                        finaltotallayout.setVisibility(View.VISIBLE);
+                        discountlayout.setVisibility(View.VISIBLE);
+                        discount.setText("Rs "+ numCredit);
+                        mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)-numCredit));
+                        credit.setText("Rs "+String.valueOf(numDiscount));
+                        total = String.valueOf(Double.parseDouble(total)-numCredit);
+                    }else{
+                        Toast.makeText(CheckoutActivity.this,"Your total cost should exceed your wallet amount!!",Toast.LENGTH_SHORT).show();
+                        finaltotallayout.setVisibility(View.GONE);
+                        discountlayout.setVisibility(View.GONE);
+                        actualtotal.setText("Rs "+total);
+                    }
 
-        address.setText(useraddress);
-        pincode.setText("Pincode - " + userpincode);
-        locality.setText(userlocality);
+                    mTotal.setText("Rs " + total);
+
+                }else{
+
+                    if(Double.parseDouble(total)>100 && numDiscount>0){
+                        actualtotal.setText("Rs "+total);
+                        finaltotallayout.setVisibility(View.VISIBLE);
+                        discountlayout.setVisibility(View.GONE);
+                        discount.setText("Rs "+ numCredit);
+                        mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)));
+                        credit.setText("Rs "+String.valueOf(numDiscount));
+                        total = String.valueOf(Double.parseDouble(total));
+                    }else{
+                        finaltotallayout.setVisibility(View.GONE);
+                        discountlayout.setVisibility(View.GONE);
+                        actualtotal.setText("Rs "+total);
+                    }
+
+
+                    mTotal.setText("Rs " + total);
+                }
+            }
+        });
+
+
 
         requestPermission();
 
@@ -242,7 +299,6 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
         Calendar rightNow = Calendar.getInstance();
         final int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-        Log.e("hour",String.valueOf(hour));
         if(hour>16){
             deliverNow.setVisibility(View.GONE);
         }
@@ -254,25 +310,27 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                     Toast.makeText(CheckoutActivity.this, "Please add the locality", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 slot = "Today";
                 timingCardView.setVisibility(View.VISIBLE);
 
-                 if(hour>=9){
+                if(hour>=9){
                     rb1.setVisibility(View.GONE);
                 }
                 deliverNow.setVisibility(View.GONE);
                 deliverLater.setVisibility(View.GONE);
                 checkoutButton.setVisibility(View.VISIBLE);
-
             }
         });
 
         deliverLater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(latitude.equals(0.0) || longitude.equals(0.0)){
                     Toast.makeText(CheckoutActivity.this, "Please add the locality", Toast.LENGTH_SHORT).show();
                 }
+
                 slot = "Tomorrow";
                 timingCardView.setVisibility(View.VISIBLE);
                 deliverNow.setVisibility(View.GONE);
@@ -333,7 +391,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             listProduct.add(product);
             totalCost  = totalCost  + Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice());
             if(!product.getType().equals("Grain")){
-                numDiscount = numDiscount+(Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice()))*0.2;
+                numDiscount = numDiscount+(Integer.parseInt(product.getQuantity())*Integer.parseInt(product.getPrice()))*0.1;
 
                 numDiscount = BigDecimal.valueOf(numDiscount)
                         .setScale(2, RoundingMode.HALF_UP)
@@ -466,6 +524,12 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             params.put("slot",slot);
             params.put("time",time);
             params.put("total",total);
+            if(usewallet.isChecked()){
+                params.put("discount",String.valueOf(numCredit));
+
+            }else{
+                params.put("discount","0");
+            }
             params.put("payment_method","Cash on Delivery");
             params.put("payment_status","Incomplete");
             params.put("latitude",String.valueOf(latitude));
@@ -492,13 +556,19 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                         if(data.has("_id")){
                             SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("cart");
                             SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("orderId");
+
+
+                            //Updating wallet
+                            new setCredit().execute();
+
+
                             Intent intent = new Intent(getApplicationContext(), YourOrders.class);
                             startActivity(intent);
                             finish();
 
                         }
                     }
-                    Toast.makeText(CheckoutActivity.this, "Order Submitted..Please Select Seller!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CheckoutActivity.this, "Order Received..!!", Toast.LENGTH_LONG).show();
 
 
                 } catch (JSONException e) {
@@ -532,6 +602,153 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
 
+    @SuppressLint("StaticFieldLeak")
+    class setCredit extends AsyncTask<String, String, String> {
+        boolean success = false;
+        HashMap<String, String> params = new HashMap<>();
+        private ProgressDialog progress;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            params.put("customerId",SharedPreferenceSingleton.getInstance(CheckoutActivity.this).getString("_id","Jaipur"));
+            if(usewallet.isChecked()){
+                params.put("credit",String.valueOf(numDiscount+(-1*numCredit)));
+
+            }else{
+                params.put("credit",String.valueOf(numDiscount));
+            }
+
+            progress=new ProgressDialog(CheckoutActivity.this);
+            progress.setMessage("Updating Wallet..");
+            progress.setIndeterminate(true);
+            progress.setProgress(0);
+            progress.show();
+        }
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = "";
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(params);
+                System.out.println(json);
+                result = Server.post(getResources().getString(R.string.setCredit),json);
+                success = true;
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
+            Log.e("result.....:",result);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progress.dismiss();
+            if (success) {
+
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+                    if(jsonObject.has("data")){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        if(data.has("_id")){
+                            SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("cart");
+                            SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("orderId");
+
+                            new GetUser(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("_id", "User Not Registered")).execute();
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+
+            }
+        }
+
+
+    }
+    @SuppressLint("StaticFieldLeak")
+    class GetUser extends AsyncTask<String, String, String> {
+
+        private ProgressDialog progress;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progress=new ProgressDialog(CheckoutActivity.this);
+            progress.setMessage("Updating local Database...");
+//            progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progress.setIndeterminate(true);
+            progress.setProgress(0);
+            progress.show();
+
+        }
+
+        private final String mId;
+        HashMap<String,String> map = new HashMap<>();
+        private Boolean success = false;
+        public GetUser(String id) {
+            mId = id;
+            map.put("_id",mId);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            // TODO: attempt authentication against a network service.
+            String result="";
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(map);
+                result = Server.post(getResources().getString(R.string.loginById),json);
+                success = true;
+                UserData.getInstance(getApplicationContext()).initUserData(new User(new JSONObject(result)), getApplicationContext());
+                return result;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+            // TODO: register the new account here.
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            progress.dismiss();
+
+            super.onPostExecute(s);
+            if (success) {
+                    Toast.makeText(getApplicationContext(), R.string.update_success, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(CheckoutActivity.this, YourOrders.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+
+            } else {
+                //REMOVE THIS AS TESTING IS OVER
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                finish();
+                Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();
+            }
+        }
+
+
+
+    }
 
 
 
@@ -587,7 +804,7 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
 
                         }
                     }
-                    Toast.makeText(CheckoutActivity.this, "Order Submitted..Please Select Seller!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CheckoutActivity.this, "Order Received..!!", Toast.LENGTH_LONG).show();
 
 
                 } catch (JSONException e) {

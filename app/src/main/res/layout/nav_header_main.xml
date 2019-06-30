@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_above="@+id/header_email"
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
         android:drawableTint="@color/white"
@@ -50,12 +49,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Pincode"
-        android:visibility="gone"
+    android:visibility="gone"
     android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
     android:drawableTint="@color/white"
     android:paddingTop="@dimen/nav_header_vertical_spacing"
     android:textColor="@color/white"
     android:id="@+id/nav_header_pincode"
     />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wallet Amount"
+        android:visibility="visible"
+        android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:drawableTint="@color/white"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textColor="@color/white"
+        android:id="@+id/nav_header_wallet"
+        />
+
 
 </LinearLayout>

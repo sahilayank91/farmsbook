@@ -66,7 +66,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
     private StorageReference storageReference;
 
-    private TextView navPhoneView,navPinCode;
+    private TextView navPhoneView,navPinCode,navWallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +121,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         View header = navigationView.getHeaderView(0);
         TextView navEmailView = header.findViewById(R.id.nav_header_email);
         TextView navNameView = header.findViewById(R.id.nav_header_name);
+        TextView navWalletView = header.findView
         navPhoneView = header.findViewById(R.id.nav_header_phone);
         navPinCode = header.findViewById(R.id.nav_header_pincode);
         String name;

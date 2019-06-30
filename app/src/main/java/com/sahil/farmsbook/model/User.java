@@ -52,7 +52,7 @@ public class User {
         if(data.has("gst"))this.gst = data.getString("gst");
         if(data.has("ifsc"))this.ifsc = data.getString("ifsc");
         if(data.has("locality"))this.locality = data.getString("locality");
-        if(data.has("credit"))this.locality = data.getString("credit");
+        if(data.has("credit"))this.credit = data.getString("credit");
 
     }
     public String getCredit() {

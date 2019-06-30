@@ -1,4 +1,4 @@
-<!--<!DOCTYPE resources [<!ENTITY server "http://192.168.0.3:3000/">]>-->
+<!--<!DOCTYPE resources [<!ENTITY server "http://192.168.0.4:3000/">]>-->
 <!DOCTYPE resources [<!ENTITY server "https://kisaanhub.herokuapp.com/">]>
 
 <resources>
@@ -98,6 +98,7 @@
     <string name="updateUser">&server;service/authenticate/updateUser</string>
     <string name="checkIfUserExist">&server;service/authenticate/checkIfUserExist</string>
     <string name="getCredit">&server;service/authenticate/getCredit</string>
+    <string name="setCredit">&server;service/authenticate/setCredit</string>
 
 
     <!-- Order -->

@@ -120,7 +120,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="@dimen/activity_vertical_margin"
-                        android:layout_weight="1"
+                        android:layout_weight="0.7"
                         android:paddingRight="@dimen/activity_horizontal_margin"
                         android:text="100"
                         android:textColor="@color/background_gradient_start"
@@ -148,7 +148,7 @@
                         android:padding="@dimen/activity_vertical_margin"
                         android:paddingLeft="@dimen/activity_horizontal_margin"
                         android:paddingRight="@dimen/activity_horizontal_margin"
-                        android:text="Discount ( 20 % )"
+                        android:text="Discount ( Your credits )"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -172,8 +172,60 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
-                    android:id="@+id/finaltotal"
+                    android:id="@+id/credit"
                     android:background="@color/colorAccent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="start"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:gravity="start"
+                            android:paddingTop="@dimen/nav_header_vertical_spacing"
+                            android:maxLines="2"
+                            android:paddingLeft="@dimen/activity_vertical_margin"
+                            android:text="Credits earned ( 10 % of total )"
+                            android:textSize="15dp"
+                            android:textColor="@color/yellow"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/activity_vertical_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textColor="@color/white"
+                            android:text="Use this credit in your next purchase"/>
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/totalCredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_weight="0.4"
+                        android:text="100"
+                        android:textColor="@color/yellow"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/finaltotal"
+                    android:background="#00ab66"
                     android:layout_height="match_parent">
 
                     <TextView
@@ -206,16 +258,29 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        />
-
-
+                        android:paddingEnd="@dimen/activity_horizontal_margin" />
                 </LinearLayout>
-
             </LinearLayout>
-
-
-
         </android.support.v7.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/usewallet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:hint="Use the Wallet Amount"
+                android:textColorHint="@color/background_gradient_start"
+            />
+        </LinearLayout>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"

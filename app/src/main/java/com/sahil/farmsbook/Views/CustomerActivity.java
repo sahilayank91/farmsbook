@@ -125,6 +125,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         View header = navigationView.getHeaderView(0);
         TextView navEmailView = header.findViewById(R.id.nav_header_email);
         TextView navNameView = header.findViewById(R.id.nav_header_name);
+        TextView navWalletView = header.findViewById(R.id.nav_header_wallet);
         navPhoneView = header.findViewById(R.id.nav_header_phone);
         navPinCode = header.findViewById(R.id.nav_header_pincode);
         String name;
@@ -138,7 +139,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         navNameView.setText(name);
         navPhoneView.setText(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("phone", "Phone not registered"));
         navPinCode.setVisibility(GONE);
-//        navPinCode.setText(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("pincode", "Pincode not registered"));
+        navWalletView.setText("Wallet Amount - Rs "+SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("credit", "0"));
 
 
         FloatingActionButton fab = findViewById(R.id.fab);

@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,15 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.sahil.farmsbook.R;
+import com.sahil.farmsbook.Views.CheckoutActivity;
 import com.sahil.farmsbook.Views.PaymentActivity;
 import com.sahil.farmsbook.Views.YourOrders;
 import com.sahil.farmsbook.model.Order;
 import com.sahil.farmsbook.model.Product;
+import com.sahil.farmsbook.model.User;
+import com.sahil.farmsbook.model.UserData;
 import com.sahil.farmsbook.utilities.Server;
+import com.sahil.farmsbook.utilities.SharedPreferenceSingleton;
 
 import static android.view.View.GONE;
 
@@ -252,7 +257,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     }
     private void openCancelDialog(View view, final int position){
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context1);
-        alertDialogBuilder.setMessage("Are you sure you want to cancel the Order");
+        alertDialogBuilder.setMessage("Are you sure you want to cancel the Order. The wallet credit you received on this order will also be deducted!!");
         alertDialogBuilder.setIcon(R.drawable.newicon);
                 alertDialogBuilder.setPositiveButton("yes",
                         new DialogInterface.OnClickListener() {
@@ -260,7 +265,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                             public void onClick(DialogInterface arg0, int arg1) {
 
                                 Toast.makeText(context1,"You have accepted to cancel the Order !!",Toast.LENGTH_LONG).show();
-                                new CancelOrder().execute(listOrders.get(position).get_id());
+                                new CancelOrder().execute(listOrders.get(position).get_id(),listOrders.get(position).getDiscount());
 
                             }
                         });
@@ -374,6 +379,79 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
 
     }
+
+    @SuppressLint("StaticFieldLeak")
+    class setCredit extends AsyncTask<String, String, String> {
+        boolean success = false;
+        HashMap<String, String> params = new HashMap<>();
+        private ProgressDialog progress;
+        private Double total;
+        setCredit(Double total){
+           this.total = total;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            params.put("customerId", SharedPreferenceSingleton.getInstance(context1).getString("_id","Jaipur"));
+                params.put("credit",String.valueOf(-1*0.1*total));
+
+            progress=new ProgressDialog(context1);
+            progress.setMessage("Updating Wallet..");
+            progress.setIndeterminate(true);
+            progress.setProgress(0);
+            progress.show();
+        }
+        @Override
+        protected String doInBackground(String... strings) {
+            String result = "";
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(params);
+                System.out.println(json);
+                result = Server.post(context1.getResources().getString(R.string.setCredit),json);
+                success = true;
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
+            Log.e("result.....:",result);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progress.dismiss();
+            if (success) {
+
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+                    if(jsonObject.has("data")){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        if(data.has("_id")){
+
+//                            new CheckoutActivity.GetUser(SharedPreferenceSingleton.getInstance(context1).getString("_id", "User Not Registered")).execute();
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+
+            }
+        }
+
+
+    }
+
     @SuppressLint("StaticFieldLeak")
     class CancelOrder extends AsyncTask<String, String, String> {
         private ProgressDialog progress;

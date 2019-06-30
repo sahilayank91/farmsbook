@@ -78,6 +78,16 @@ public class Order {
 
     private String paymentId;
 
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    private String discount;
+
     public Order(JSONObject order) throws JSONException {
         if(order.has("_id"))this._id = order.getString("_id");
         if(order.has("created_at"))this.create_time = order.getString("created_at");
@@ -97,6 +107,7 @@ public class Order {
         if(order.has("payment_method"))this.payment_method = order.getString("payment_method");
         if(order.has("payment_status"))this.payment_status = order.getString("payment_status");
         if(order.has("paymentId"))this.paymentId = order.getString("paymentId");
+        if(order.has("discount"))this.discount = order.getString("discount");
     }
     public String getRating() {
         return rating;
