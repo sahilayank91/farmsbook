@@ -305,7 +305,7 @@
                     android:layout_weight="8"
                     android:textStyle="bold"
                     android:layout_gravity="start|center"
-                    android:text="Get 20% off on orders more than Rs 100"/>
+                    android:text="Get 10% off on orders more than Rs 100"/>
                 <ImageView
                     android:layout_width="0dp"
                     android:id="@+id/info"

@@ -227,15 +227,17 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                         discount.setText("Rs "+ numCredit);
                         mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)-numCredit));
                         credit.setText("Rs "+String.valueOf(numDiscount));
-                        total = String.valueOf(Double.parseDouble(total)-numCredit);
+//                        total = String.valueOf(Double.parseDouble(total)-numCredit);
+                        mTotal.setText("Rs " + String.valueOf(Double.parseDouble(total)-numCredit));
                     }else{
                         Toast.makeText(CheckoutActivity.this,"Your total cost should exceed your wallet amount!!",Toast.LENGTH_SHORT).show();
                         finaltotallayout.setVisibility(View.GONE);
                         discountlayout.setVisibility(View.GONE);
                         actualtotal.setText("Rs "+total);
+                        mTotal.setText("Rs " + total);
                     }
 
-                    mTotal.setText("Rs " + total);
+
 
                 }else{
 
@@ -246,15 +248,17 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                         discount.setText("Rs "+ numCredit);
                         mTotal.setText("Rs "+String.valueOf(Double.parseDouble(total)));
                         credit.setText("Rs "+String.valueOf(numDiscount));
-                        total = String.valueOf(Double.parseDouble(total));
+                        mTotal.setText("Rs " + total);
+//                        total = String.valueOf(Double.parseDouble(total));
                     }else{
                         finaltotallayout.setVisibility(View.GONE);
                         discountlayout.setVisibility(View.GONE);
                         actualtotal.setText("Rs "+total);
+                        mTotal.setText("Rs " + total);
                     }
 
 
-                    mTotal.setText("Rs " + total);
+
                 }
             }
         });
@@ -526,7 +530,6 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
             params.put("total",total);
             if(usewallet.isChecked()){
                 params.put("discount",String.valueOf(numCredit));
-
             }else{
                 params.put("discount","0");
             }
@@ -656,12 +659,12 @@ public class CheckoutActivity extends AppCompatActivity implements OnMapReadyCal
                     jsonObject = new JSONObject(s);
                     if(jsonObject.has("data")){
                         JSONObject data = jsonObject.getJSONObject("data");
-                        if(data.has("_id")){
+
                             SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("cart");
                             SharedPreferenceSingleton.getInstance(CheckoutActivity.this).remove("orderId");
 
                             new GetUser(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("_id", "User Not Registered")).execute();
-                        }
+
                     }
 
 

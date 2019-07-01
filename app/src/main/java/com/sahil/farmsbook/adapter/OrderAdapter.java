@@ -39,6 +39,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.sahil.farmsbook.R;
+import com.sahil.farmsbook.Views.CartActivity;
 import com.sahil.farmsbook.Views.CheckoutActivity;
 import com.sahil.farmsbook.Views.PaymentActivity;
 import com.sahil.farmsbook.Views.YourOrders;
@@ -104,7 +105,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
 
 
-
+        holder.pickupdate.setText(String.format("%s at %s", current.getSlot(), current.getTime()));
 
 
         holder.orderdate.setText(order.toLocaleString().substring(0, 12));
@@ -117,7 +118,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         });
         holder.deliveredotp.setText(current.getDelivered_otp());
 
-        holder.total.setText(current.getTotal());
+        holder.total.setText("Rs "+String.valueOf(Double.parseDouble(current.getTotal()) - Double.parseDouble(current.getDiscount())));
 
         holder.viewOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,7 +292,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-        TextView orderid, orderdate,paymentmethod,orderstatus,deliveredotp,total,paymentstatus;
+        TextView orderid, orderdate,paymentmethod,orderstatus,deliveredotp,total,paymentstatus,pickupdate;
         Button cancel,checkout,viewOrder,addRating;
 
         private OrderViewHolder(View itemView) {
@@ -308,6 +309,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             viewOrder= itemView.findViewById(R.id.viewOrder);
             addRating = itemView.findViewById(R.id.addRating);
             paymentstatus = itemView.findViewById(R.id.payment_status);
+            pickupdate = itemView.findViewById(R.id.pickup_date);
 
             itemView.setOnClickListener(this);
             orderstatus.setOnClickListener(this);
@@ -380,77 +382,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     }
 
-    @SuppressLint("StaticFieldLeak")
-    class setCredit extends AsyncTask<String, String, String> {
-        boolean success = false;
-        HashMap<String, String> params = new HashMap<>();
-        private ProgressDialog progress;
-        private Double total;
-        setCredit(Double total){
-           this.total = total;
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            params.put("customerId", SharedPreferenceSingleton.getInstance(context1).getString("_id","Jaipur"));
-                params.put("credit",String.valueOf(-1*0.1*total));
-
-            progress=new ProgressDialog(context1);
-            progress.setMessage("Updating Wallet..");
-            progress.setIndeterminate(true);
-            progress.setProgress(0);
-            progress.show();
-        }
-        @Override
-        protected String doInBackground(String... strings) {
-            String result = "";
-            try {
-                Gson gson = new Gson();
-                String json = gson.toJson(params);
-                System.out.println(json);
-                result = Server.post(context1.getResources().getString(R.string.setCredit),json);
-                success = true;
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-
-
-
-            Log.e("result.....:",result);
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            progress.dismiss();
-            if (success) {
-
-                JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(s);
-                    if(jsonObject.has("data")){
-                        JSONObject data = jsonObject.getJSONObject("data");
-                        if(data.has("_id")){
-
-//                            new CheckoutActivity.GetUser(SharedPreferenceSingleton.getInstance(context1).getString("_id", "User Not Registered")).execute();
-                        }
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            } else {
-
-            }
-        }
-
-
-    }
 
     @SuppressLint("StaticFieldLeak")
     class CancelOrder extends AsyncTask<String, String, String> {
@@ -496,8 +427,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                     Toast.makeText(context1,"Some error occured in cancelling Order..Please check your internet connection",Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(context1,"Order has been cancelled",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context1,YourOrders.class);
-                    context1.startActivity(intent);
+                    ((YourOrders)context1).getUser();
+
+//                    Intent intent = new Intent(context1,YourOrders.class);
+//                    context1.startActivity(intent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -126,7 +126,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         holder.pincode.setText("Pincode - " + current.getCustomer().getPincode());
 
         if(current.getTime()!=null){
-            holder.orderTime.setText(current.getTime());
+            holder.orderTime.setText(current.getSlot() + " at "+current.getTime());
         }
 
         if(current.getOrderstatus().equals("Recieved")){

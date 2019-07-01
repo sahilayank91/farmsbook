@@ -6,8 +6,8 @@ android {
         applicationId "com.sahil.farmsbook"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 18
-        versionName "2.2"
+        versionCode 19
+        versionName "2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en", "es"
         ndk {
