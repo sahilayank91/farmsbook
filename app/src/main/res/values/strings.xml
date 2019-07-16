@@ -1,6 +1,6 @@
 <!--<!DOCTYPE resources [<!ENTITY server "http://192.168.0.4:3000/">]>-->
 <!DOCTYPE resources [<!ENTITY server "https://kisaanhub.herokuapp.com/">]>
-
+<!---->
 <resources>
     <string name="app_name">FarmsBook</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

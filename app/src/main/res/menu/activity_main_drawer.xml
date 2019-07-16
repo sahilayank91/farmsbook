@@ -3,8 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
+
+        <item android:title="Wallet">
+            <menu>
+                <item
+                    android:id="@+id/nav_wallet"
+                    android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+                    android:title="Wallet Amount - Rs 0" />
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Profile">
+        <menu>
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_account_box_black_24dp"
@@ -22,10 +34,12 @@
             android:id="@+id/nav_seller_order"
             android:icon="@drawable/ic_card_travel_black_24dp"
             android:title="Orders" />
+        </menu>
+        </item>
 
     </group>
 
-
+    <group android:checkableBehavior="single">
     <item android:title="@string/communicate">
         <menu>
             <item
@@ -56,7 +70,7 @@
                 android:title="@string/logout" />
         </menu>
     </item>
-
+    </group>
     <item android:title="Update">
         <menu>
             <item
@@ -67,6 +81,7 @@
         </menu>
 
     </item>
+    <group android:checkableBehavior="single">
     <item android:title="Admin">
 
         <menu>
@@ -89,5 +104,6 @@
         </menu>
 
     </item>
+    </group>
 
 </menu>

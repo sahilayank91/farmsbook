@@ -20,6 +20,7 @@
         android:drawableTint="@color/white"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white" />
 
@@ -38,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Phone No"
+        android:textStyle="bold"
         android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
         android:drawableTint="@color/white"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -49,6 +51,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Pincode"
+    android:textStyle="bold"
     android:visibility="gone"
     android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
     android:drawableTint="@color/white"
@@ -56,17 +59,5 @@
     android:textColor="@color/white"
     android:id="@+id/nav_header_pincode"
     />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Wallet Amount"
-        android:visibility="visible"
-        android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
-        android:drawableTint="@color/white"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textColor="@color/white"
-        android:id="@+id/nav_header_wallet"
-        />
-
 
 </LinearLayout>

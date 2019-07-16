@@ -94,9 +94,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
             holder.refuseorder.setVisibility(View.GONE);
             holder.total.setText(current.getTotal());
 //            holder.timingtext.setVisibility(View.VISIBLE);
-            holder.orderTime.setVisibility(View.VISIBLE);
 
-            holder.orderTime.setText(current.getTime());
 
         }
 
@@ -158,6 +156,8 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
 
         holder.orderdate.setText(order.toLocaleString().substring(0,12));
 
+        holder.orderTime.setText(String.format("%s at %s", current.getSlot(), current.getTime()));
+
         holder.phone.setText(current.getCustomer().getPhone());
 
         holder.call.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +196,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
                 if(current.getStatus().equals("Recieved")){
                     confirmOrderDialog(v, current.get_id());
                 }else{
-                    showEnterOTPDialog(current.get_id(),current.getStatus());
+                    showEnterOTPDialog(current.get_id(),current.getStatus(),current.getCustomer().get_id(),current.getCredit(), current.getDiscount());
                 }
             }
         });
@@ -237,12 +237,12 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
             holder.navigate.setVisibility(View.GONE);
             holder.orderwork.setVisibility(View.GONE);
 //            holder.timingtext.setVisibility(View.GONE);
-            holder.orderTime.setVisibility(View.GONE);
+            holder.orderTime.setVisibility(View.VISIBLE);
             holder.call.setVisibility(View.GONE);
         }
 
 
-
+        holder.total.setText(String.valueOf(Double.parseDouble(current.getTotal())-Double.parseDouble(current.getDiscount())));
 
     }
 
@@ -302,7 +302,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                new CancelOrder().execute();
+//                new CancelOrder().execute();
             }
         });
         builderSingle.show();
@@ -318,7 +318,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                             Toast.makeText(context1, "You clicked yes button", Toast.LENGTH_LONG).show();
-                            new CancelOrder().execute(listOrders.get(position).get_id());
+                            new CancelOrder(listOrders.get(position).get_id(),listOrders.get(position).getCredit(),listOrders.get(position).getDiscount()).execute();
                             listOrders.remove(position);
                             notifyItemRemoved(position);
                             notifyItemRangeChanged(position, listOrders.size());
@@ -336,7 +336,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
             alertDialog.show();
 
     }
-    private void showEnterOTPDialog(final String id,final String status) {
+    private void showEnterOTPDialog(final String id,final String status, final String customerId, final String credit, final String discount) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context1);
         final EditText input = new EditText(context1);
 
@@ -353,7 +353,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
             public void onClick(DialogInterface dialog, int whichButton) {
                 //do something with edt.getText().toString();
                 Toast.makeText(context1,input.getText().toString(),Toast.LENGTH_LONG).show();
-               new verifyOTP(id,"Processed",input.getText().toString()).execute();
+               new verifyOTP(id,"Processed",input.getText().toString(),customerId, credit, discount).execute();
             }
         });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -465,7 +465,13 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
     @SuppressLint("StaticFieldLeak")
     class CancelOrder extends AsyncTask<String, String, String> {
         private ProgressDialog progress;
+        HashMap<String,String> params = new HashMap<>();
 
+        CancelOrder(String id, String credit, String discount){
+            params.put("_id",id);
+            params.put("credit",credit);
+            params.put("discount",discount);
+        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -480,8 +486,6 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
         protected String doInBackground(String... strings) {
             String result = "";
             try {
-                HashMap<String,String> params = new HashMap<>();
-                params.put("_id",strings[0]);
                 Gson gson = new Gson();
                 String json = gson.toJson(params);
                 result = Server.post(context1.getResources().getString(R.string.cancelOrder),json);
@@ -578,10 +582,13 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderAdapter.
 
         private String stat;
         HashMap<String,String> map = new HashMap<>();
-        verifyOTP(String id, String status,String otp){
+        verifyOTP(String id, String status,String otp, String customer, String credit, String discount){
             map.put("status","Completed");
             map.put("payment_status","Complete");
             map.put("_id",id);
+            map.put("customerId",customer);
+            map.put("credit",credit);
+            map.put("discount",discount);
             map.put("delivered_otp",otp);
 
         }

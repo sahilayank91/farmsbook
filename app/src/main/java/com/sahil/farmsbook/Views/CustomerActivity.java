@@ -44,7 +44,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,6 +56,8 @@ import com.sahil.farmsbook.Views.Admin.AddItem;
 import com.sahil.farmsbook.Views.Admin.UploadImage;
 import com.sahil.farmsbook.interfaces.RCVItemClickListener;
 import com.sahil.farmsbook.model.Offer;
+import com.sahil.farmsbook.model.User;
+import com.sahil.farmsbook.model.UserData;
 import com.sahil.farmsbook.utilities.CountDrawable;
 import com.sahil.farmsbook.utilities.Server;
 import com.sahil.farmsbook.utilities.SharedPreferenceSingleton;
@@ -66,7 +70,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     private MyViewPagerAdapter myViewPagerAdapter;
     private TextView[] dots,donation_dots;
     private LinearLayout dotsLayout;
-    CardView vegetable, fruit, grain;
+    CardView vegetable, fruit, grain, deals;
 
     private StorageReference storageReference;
 
@@ -79,7 +83,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        new GetUser().execute();
         viewPager = findViewById(R.id.view_pager);
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
@@ -108,14 +112,17 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                 nav_Menu.findItem(R.id.nav_add_image).setVisible(false);
                 nav_Menu.findItem(R.id.nav_add_item).setVisible(false);
                 nav_Menu.findItem(R.id.nav_add_seller).setVisible(false);
+                nav_Menu.findItem(R.id.nav_wallet).setTitle("Wallet Amount - "+ SharedPreferenceSingleton.getInstance(CustomerActivity.this).getString("credit","0"));
                 break;
             case "Seller":
                 nav_Menu.findItem(R.id.nav_order).setVisible(false);
                 nav_Menu.findItem(R.id.nav_add_seller).setVisible(false);
+                nav_Menu.findItem(R.id.nav_wallet).setVisible(false);
                 break;
             case "Admin":
                 nav_Menu.findItem(R.id.nav_add_seller).setVisible(true);
                 nav_Menu.findItem(R.id.nav_add_image).setVisible(true);
+                nav_Menu.findItem(R.id.nav_wallet).setVisible(false);
 
                 break;
         }
@@ -123,23 +130,21 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
 
         View header = navigationView.getHeaderView(0);
+
         TextView navEmailView = header.findViewById(R.id.nav_header_email);
         TextView navNameView = header.findViewById(R.id.nav_header_name);
-        TextView navWalletView = header.findViewById(R.id.nav_header_wallet);
+
         navPhoneView = header.findViewById(R.id.nav_header_phone);
         navPinCode = header.findViewById(R.id.nav_header_pincode);
         String name;
         String firstname = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("firstname", "User Not Registered");
 
-//        String lastname = SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("lastname", "User Not Registered");
         name = firstname;
 
         navEmailView.setVisibility(GONE);
-//        navEmailView.setText(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("email", "User Not Registered"));
         navNameView.setText(name);
         navPhoneView.setText(SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("phone", "Phone not registered"));
         navPinCode.setVisibility(GONE);
-        navWalletView.setText("Wallet Amount - Rs "+SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("credit", "0"));
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -158,6 +163,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         vegetable = findViewById(R.id.vegetable);
         fruit = findViewById(R.id.fruit);
         grain = findViewById(R.id.grain);
+        deals = findViewById(R.id.deal);
 
 
        vegetable.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +172,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                Intent intent = new Intent(CustomerActivity.this, ListActivity.class);
                intent.putExtra("type","Vegetable");
                startActivity(intent);
+               finish();
            }
        });
 
@@ -175,6 +182,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                Intent intent = new Intent(CustomerActivity.this, ListActivity.class);
                intent.putExtra("type","Fruit");
                startActivity(intent);
+               finish();
            }
        });
 
@@ -185,9 +193,32 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                Intent intent = new Intent(CustomerActivity.this, ListActivity.class);
                intent.putExtra("type","Grain");
                startActivity(intent);
+               finish();
            }
        });
 
+
+
+       deals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CustomerActivity.this, ListActivity.class);
+                Toast.makeText(CustomerActivity.this,"This offer is applicable only between 8:00 am to 9:00 am",Toast.LENGTH_LONG).show();
+                intent.putExtra("type","Deal");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Calendar rightNow = Calendar.getInstance();
+        final int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+
+        if(hour>=8 && hour<=9){
+            deals.setVisibility(View.VISIBLE);
+        }else{
+            deals.setVisibility(GONE);
+        }
 
 
 //       new getCredit().execute();
@@ -219,6 +250,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         }else if(id==R.id.nav_order){
             Intent intent = new Intent(CustomerActivity.this, YourOrders.class);
             startActivity(intent);
+            finish();
         }else if (id==R.id.nav_seller_order){
             Intent intent = new Intent(CustomerActivity.this, PickupActivity.class);
             startActivity(intent);
@@ -240,6 +272,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         }else if(id==R.id.nav_completed_order){
             Intent intent = new Intent(CustomerActivity.this,CompletedOrder.class);
             startActivity(intent);
+            finish();
         }else if(id==R.id.nav_feedback){
             Intent intent = new Intent(CustomerActivity.this, FeedbackActivity.class);
             startActivity(intent);
@@ -592,5 +625,52 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
             System.out.println("Result:" + result);
             return result;
         }
+    }
+    @SuppressLint("StaticFieldLeak")
+    class GetUser extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        HashMap<String,String> map = new HashMap<>();
+        private Boolean success = false;
+        GetUser() {
+            map.put("_id", SharedPreferenceSingleton.getInstance(getApplicationContext()).getString("_id", "User Not Registered"));
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            // TODO: attempt authentication against a network service.
+            String result="";
+            try {
+                Gson gson = new Gson();
+                String json = gson.toJson(map);
+                result = Server.post(getResources().getString(R.string.loginById),json);
+                success = true;
+                UserData.getInstance(getApplicationContext()).initUserData(new User(new JSONObject(result)), getApplicationContext());
+                return result;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+            // TODO: register the new account here.
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+
+
     }
 }

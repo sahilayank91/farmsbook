@@ -1,13 +1,28 @@
 package com.sahil.farmsbook.Views;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.sahil.farmsbook.R;
+import com.sahil.farmsbook.model.User;
+import com.sahil.farmsbook.model.UserData;
+import com.sahil.farmsbook.utilities.Server;
+import com.sahil.farmsbook.utilities.SharedPreferenceSingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 
 public class SplashScreen extends Activity {
@@ -37,6 +52,8 @@ public class SplashScreen extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+
+
                 Intent i = new Intent(SplashScreen.this, WelcomeActivity.class);
                 startActivity(i);
 
@@ -45,6 +62,7 @@ public class SplashScreen extends Activity {
             }
         }, SPLASH_TIME_OUT);
     }
+
 
 
 

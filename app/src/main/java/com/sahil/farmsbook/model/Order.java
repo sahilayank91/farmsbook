@@ -78,13 +78,10 @@ public class Order {
 
     private String paymentId;
 
-    public String getDiscount() {
-        return discount;
-    }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
+
+    private String credit;
+
 
     private String discount;
 
@@ -108,6 +105,22 @@ public class Order {
         if(order.has("payment_status"))this.payment_status = order.getString("payment_status");
         if(order.has("paymentId"))this.paymentId = order.getString("paymentId");
         if(order.has("discount"))this.discount = order.getString("discount");
+        if(order.has("credit"))this.credit = order.getString("credit");
+    }
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
     }
     public String getRating() {
         return rating;

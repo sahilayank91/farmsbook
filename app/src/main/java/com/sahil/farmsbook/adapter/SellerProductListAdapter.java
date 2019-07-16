@@ -180,6 +180,14 @@ public class SellerProductListAdapter extends RecyclerView.Adapter<SellerProduct
         holder.brand.setText("Brand - " + current.getBrand());
         holder.hindiname.setText("(" + current.getHindiname() + ")");
 
+        if(current.getDiscount()!=null){
+            holder.discount.setText(current.getDiscount() + "% off");
+        }else{
+            holder.discount.setVisibility(View.GONE);
+            holder.discountimage.setVisibility(View.GONE);
+        }
+
+
         if(current.getQuantity()!=null){
             holder.quantity.setText(current.getQuantity());
         }else{
@@ -305,7 +313,7 @@ public class SellerProductListAdapter extends RecyclerView.Adapter<SellerProduct
             param.put(product.get_id(),json);
             String js = gson.toJson(param);
             SharedPreferenceSingleton.getInstance(context).put("cart", js);
-            Toast.makeText(context,"Item added to the Cart",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Item added to the Cart",Toast.LENGTH_SHORT).show();
         }else{
             String cartString = SharedPreferenceSingleton.getInstance(context).getString("cart","Can't find the value");
             java.lang.reflect.Type type = new TypeToken<HashMap<String, String>>(){}.getType();
@@ -313,7 +321,7 @@ public class SellerProductListAdapter extends RecyclerView.Adapter<SellerProduct
 
             cartmap.put(product.get_id(),json);
             SharedPreferenceSingleton.getInstance(context).put("cart", gson.toJson(cartmap));
-            Toast.makeText(context,"Item added to the Cart",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Item added to the Cart",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -371,10 +379,11 @@ public class SellerProductListAdapter extends RecyclerView.Adapter<SellerProduct
 
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView  total, name,brand, hindiname,quantity;
+        TextView  total, name,brand, hindiname,quantity,discount;
         ImageView minus, plus, image;
         Spinner spinner;
         ImageView deleteButton;
+        ImageView discountimage;
         private ProductViewHolder(View itemView) {
             super(itemView);
 
@@ -383,11 +392,13 @@ public class SellerProductListAdapter extends RecyclerView.Adapter<SellerProduct
             hindiname = itemView.findViewById(R.id.hindiname);
             brand = itemView.findViewById(R.id.brandName);
             quantity = itemView.findViewById(R.id.quantity);
+            discount = itemView.findViewById(R.id.discount);
             spinner  = itemView.findViewById(R.id.spinner);
             minus = itemView.findViewById(R.id.minus);
             plus = itemView.findViewById(R.id.add);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             image = itemView.findViewById(R.id.imageView);
+            discountimage = itemView.findViewById(R.id.discountimage);
 
         }
 

@@ -25,6 +25,8 @@ public class Product {
     private String total;
     private String brand;
 
+    private String discount;
+
 
     private String type;
 
@@ -65,6 +67,7 @@ public class Product {
         if(order.has("total"))this.total = order.getString("total");
         if(order.has("outofstock"))this.outofstock = order.getString("outofstock");
         if(order.has("type"))this.type = order.getString("type");
+        if(order.has("discount"))this.discount = order.getString("discount");
 
 
 
@@ -118,6 +121,14 @@ public class Product {
     }
 
 
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
 
     public String getOutofstock() {
         return outofstock;

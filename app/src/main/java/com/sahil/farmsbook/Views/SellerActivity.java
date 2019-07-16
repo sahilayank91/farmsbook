@@ -82,19 +82,22 @@ public class SellerActivity extends AppCompatActivity implements NavigationView.
             case "Customer":
                 nav_Menu.findItem(R.id.nav_seller_order).setVisible(false);
                 nav_Menu.findItem(R.id.nav_add_image).setVisible(false);
+                nav_Menu.findItem(R.id.nav_add_item).setVisible(false);
+                nav_Menu.findItem(R.id.nav_add_seller).setVisible(false);
                 break;
             case "Seller":
                 nav_Menu.findItem(R.id.nav_order).setVisible(false);
-                nav_Menu.findItem(R.id.nav_add_image).setVisible(false);
-                nav_Menu.findItem(R.id.nav_add_item).setVisible(false);
                 nav_Menu.findItem(R.id.nav_add_seller).setVisible(false);
-
+                nav_Menu.findItem(R.id.nav_wallet).setVisible(false);
                 break;
             case "Admin":
-                nav_Menu.findItem(R.id.nav_add_image).setVisible(true);
                 nav_Menu.findItem(R.id.nav_add_seller).setVisible(true);
+                nav_Menu.findItem(R.id.nav_add_image).setVisible(true);
+                nav_Menu.findItem(R.id.nav_wallet).setVisible(false);
+
                 break;
         }
+
 
 
 
